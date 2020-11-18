@@ -9,13 +9,14 @@ public class EventsCreator {
         create("events.txt");
         try {
             FileWriter myWriter = new FileWriter("events.txt");
+            myWriter.write("Events.nrof = 100\n");
             myWriter.write("###################################\n");
             for (int i = 0; i<=99; i++){
                 myWriter.write("Events"+(i+1)+".class = MessageEventGenerator\n");
                 myWriter.write("Events"+(i+1)+".interval = 60,60\n");
                 myWriter.write("Events"+(i+1)+".size = 10k,10k\n");
                 myWriter.write("Events"+(i+1)+".hosts = "+i+","+i+"\n");
-                myWriter.write("Events"+(i+1)+".tohosts = 100,106\n");
+                myWriter.write("Events"+(i+1)+".tohosts = 100,105\n");
                 myWriter.write("Events"+(i+1)+".prefix = M\n");
                 myWriter.write("###################################\n");
             }
@@ -34,7 +35,7 @@ public class EventsCreator {
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
-                System.out.println("File already exists.");
+                System.out.println("File already exists. Deleting...");
                 myObj.delete();
                 myObj.createNewFile();
                 System.out.println("File created: " + myObj.getName());
