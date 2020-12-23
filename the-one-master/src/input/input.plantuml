@@ -1,0 +1,416 @@
+@startuml
+
+title __INPUT's Class Diagram__\n
+
+  namespace input {
+    class input.BinaryEventsReader {
+        {static} + BINARY_EXT : String
+        - eventsLeft : int
+        - in : ObjectInputStream
+        + BinaryEventsReader()
+        + close()
+        {static} + isBinaryEeFile()
+        + readEvents()
+        {static} + storeToBinaryFile()
+    }
+  }
+  
+
+  namespace input {
+    class input.ConnectionEvent {
+        # fromAddr : int
+        # interfaceId : String
+        # isUp : boolean
+        # toAddr : int
+        + ConnectionEvent()
+        + processEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    class input.DTN2Events {
+        - bundle_list : Map<String, Bundle>
+        - events : Queue<ExternalEvent>
+        + DTN2Events()
+        + getParserHandler()
+        + nextEvent()
+        + nextEventsTime()
+        - enqueMsg()
+        - isReg()
+        - regMsg()
+    }
+  }
+  
+
+  namespace input {
+    class input.DTN2Events.ParserHandler {
+        - c_host : String
+        - c_port : int
+        - console : DTNConsoleConnection
+        - host_id : int
+        + ParserHandler()
+        + connected()
+        + error()
+        + incomingBundle()
+        + parseError()
+    }
+  }
+  
+
+  namespace input {
+    interface input.EventQueue {
+        {abstract} + nextEvent()
+        {abstract} + nextEventsTime()
+    }
+  }
+  
+
+  namespace input {
+    class input.EventQueueHandler {
+        {static} + CLASS_PACKAGE : String
+        {static} + CLASS_SETTING : String
+        {static} + NROF_SETTING : String
+        {static} + PATH_SETTING : String
+        {static} + PRELOAD_SETTING : String
+        {static} + SETTINGS_NAMESPACE : String
+        - queues : List<EventQueue>
+        + EventQueueHandler()
+        + getEventQueues()
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalEvent {
+        # time : double
+        + ExternalEvent()
+        + compareTo()
+        + getTime()
+        + processEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalEventsQueue {
+        {static} + DEFAULT_NROF_PRELOAD : int
+        {static} + PATH_SETTING : String
+        {static} + PRELOAD_SETTING : String
+        {static} + SETTINGS_NAMESPACE : String
+        - allEventsRead : boolean
+        - eventsFile : File
+        - nextEventIndex : int
+        - nrofPreload : int
+        - queue : List<ExternalEvent>
+        + ExternalEventsQueue()
+        + ExternalEventsQueue()
+        + eventsLeftInBuffer()
+        + nextEvent()
+        + nextEventsTime()
+        + setNrofPreload()
+        - init()
+        - readEvents()
+    }
+  }
+  
+
+  namespace input {
+    interface input.ExternalEventsReader {
+        {abstract} + close()
+        {abstract} + readEvents()
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalMovementReader {
+        {static} + COMMENT_PREFIX : String
+        - lastLine : String
+        - lastTimeStamp : double
+        - maxTime : double
+        - maxX : double
+        - maxY : double
+        - minTime : double
+        - minX : double
+        - minY : double
+        - normalize : boolean
+        - scanner : Scanner
+        + ExternalMovementReader()
+        + getLastTimeStamp()
+        + getMaxTime()
+        + getMaxX()
+        + getMaxY()
+        + getMinTime()
+        + getMinX()
+        + getMinY()
+        + readNextMovements()
+        + setNormalize()
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalPathMovementReader {
+        - activeTimes : List<List<ActiveTime>>
+        - maxID : int
+        - maxTime : double
+        - maxX : double
+        - maxY : double
+        - minTime : double
+        - minX : double
+        - minY : double
+        - normalize : boolean
+        - paths : List<List<List<Entry>>>
+        {static} - singletons : Map<String, ExternalPathMovementReader>
+        + getActive()
+        {static} + getInstance()
+        + getMaxTime()
+        + getMaxX()
+        + getMaxY()
+        + getMinTime()
+        + getMinX()
+        + getMinY()
+        + getPaths()
+        + setNormalize()
+        - ExternalPathMovementReader()
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalPathMovementReader.ActiveTime {
+        + end : double
+        + start : double
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalPathMovementReader.Entry {
+        + time : double
+        + x : double
+        + y : double
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageBurstGenerator {
+        - nextFromOffset : int
+        - nextToOffset : int
+        + MessageBurstGenerator()
+        + nextEvent()
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageCreateEvent {
+        - responseSize : int
+        - size : int
+        + MessageCreateEvent()
+        + processEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageDeleteEvent {
+        - drop : boolean
+        + MessageDeleteEvent()
+        + processEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    abstract class input.MessageEvent {
+        # fromAddr : int
+        # id : String
+        # toAddr : int
+        + MessageEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageEventGenerator {
+        {static} + HOST_RANGE_S : String
+        {static} + MESSAGE_ID_PREFIX_S : String
+        {static} + MESSAGE_INTERVAL_S : String
+        {static} + MESSAGE_SIZE_S : String
+        {static} + MESSAGE_TIME_S : String
+        {static} + TO_HOST_RANGE_S : String
+        # hostRange : int[]
+        # idPrefix : String
+        # msgTime : double[]
+        # nextEventsTime : double
+        # rng : Random
+        # toHostRange : int[]
+        - id : int
+        - msgInterval : int[]
+        - sizeRange : int[]
+        + MessageEventGenerator()
+        + nextEvent()
+        + nextEventsTime()
+        # drawHostAddress()
+        # drawMessageSize()
+        # drawNextEventTimeDiff()
+        # drawToAddress()
+        # getID()
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageRelayEvent {
+        {static} + ABORTED : int
+        {static} + SENDING : int
+        {static} + STAGE_STRINGS : String[]
+        {static} + TRANSFERRED : int
+        - stage : int
+        + MessageRelayEvent()
+        + processEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace input {
+    class input.OneFromEachMessageGenerator {
+        - fromIds : List<Integer>
+        + OneFromEachMessageGenerator()
+        + nextEvent()
+    }
+  }
+  
+
+  namespace input {
+    class input.OneToEachMessageGenerator {
+        - toIds : List<Integer>
+        + OneToEachMessageGenerator()
+        + nextEvent()
+    }
+  }
+  
+
+  namespace input {
+    class input.ScheduledUpdatesQueue {
+        - updates : List<ExternalEvent>
+        + ScheduledUpdatesQueue()
+        + addUpdate()
+        + nextEvent()
+        + nextEventsTime()
+        + toString()
+        - putToQueue()
+    }
+  }
+  
+
+  namespace input {
+    class input.StandardEventsReader {
+        {static} + ABORT : String
+        {static} + ALL_MESSAGES_ID : String
+        {static} + CONNECTION : String
+        {static} + CONNECTION_DOWN : String
+        {static} + CONNECTION_UP : String
+        {static} + CREATE : String
+        {static} + DELIVERED : String
+        {static} + DROP : String
+        {static} + REMOVE : String
+        {static} + SEND : String
+        - reader : BufferedReader
+        + StandardEventsReader()
+        + close()
+        + readEvents()
+        - convertToInteger()
+        - getHostAddress()
+    }
+  }
+  
+
+  namespace input {
+    class input.WKTMapReader {
+        - bidirectionalPaths : boolean
+        - nodeType : int
+        - nodes : Hashtable<Coord, MapNode>
+        + WKTMapReader()
+        + addPaths()
+        + addPaths()
+        + getMap()
+        + getNodes()
+        + getNodesHash()
+        + setBidirectional()
+        - createOrUpdateNode()
+        - updateMap()
+    }
+  }
+  
+
+  namespace input {
+    class input.WKTReader {
+        {static} + LINESTRING : String
+        {static} + MULTILINESTRING : String
+        {static} + POINT : String
+        - done : boolean
+        - reader : BufferedReader
+        + readLines()
+        + readNestedContents()
+        + readNestedContents()
+        + readPoints()
+        + readPoints()
+        # init()
+        # isDone()
+        # isKnownType()
+        # nextType()
+        # parseLineString()
+        # parseMultilinestring()
+        # parsePoint()
+        # readWord()
+        # setDone()
+        # skipAllWhitespace()
+        # skipUntil()
+    }
+  }
+  
+
+  input.BinaryEventsReader .up.|> input.ExternalEventsReader
+  input.ConnectionEvent -up-|> input.ExternalEvent
+  input.DTN2Events .up.|> input.EventQueue
+  input.DTN2Events +-down- input.DTN2Events.ParserHandler
+  input.DTN2Events.ParserHandler .up.|> fi.tkk.netlab.dtn.ecla.CLAInterface
+  input.DTN2Events.ParserHandler o-- input.DTN2Events : events
+  input.ExternalEvent .up.|> java.io.Serializable
+  input.ExternalEvent .up.|> java.lang.Comparable
+  input.ExternalEventsQueue .up.|> input.EventQueue
+  input.ExternalEventsQueue o-- input.ExternalEventsReader : reader
+  input.ExternalPathMovementReader +-down- input.ExternalPathMovementReader.ActiveTime
+  input.ExternalPathMovementReader +-down- input.ExternalPathMovementReader.Entry
+  input.MessageBurstGenerator -up-|> input.MessageEventGenerator
+  input.MessageCreateEvent -up-|> input.MessageEvent
+  input.MessageDeleteEvent -up-|> input.MessageEvent
+  input.MessageEvent -up-|> input.ExternalEvent
+  input.MessageEventGenerator .up.|> input.EventQueue
+  input.MessageRelayEvent -up-|> input.MessageEvent
+  input.OneFromEachMessageGenerator -up-|> input.MessageEventGenerator
+  input.OneToEachMessageGenerator -up-|> input.MessageEventGenerator
+  input.ScheduledUpdatesQueue .up.|> input.EventQueue
+  input.ScheduledUpdatesQueue o-- input.ExternalEvent : nextEvent
+  input.StandardEventsReader .up.|> input.ExternalEventsReader
+  input.WKTMapReader -up-|> input.WKTReader
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

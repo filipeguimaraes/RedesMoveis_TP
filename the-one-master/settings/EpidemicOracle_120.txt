@@ -1,0 +1,5 @@
+Group.router = EpidemicOracleRouter
+
+Group3.nrofHosts = 120
+
+Report.reportDir = reports/EpidemicOracle_120

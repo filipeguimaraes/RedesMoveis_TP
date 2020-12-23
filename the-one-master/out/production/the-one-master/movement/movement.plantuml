@@ -1,0 +1,739 @@
+@startuml
+
+title __MOVEMENT's Class Diagram__\n
+
+  namespace movement {
+    class movement.BusControlSystem {
+        {static} + BUS_CONTROL_SYSTEM_NR : String
+        - busStops : List<Coord>
+        - busses : HashMap<Integer, BusMovement>
+        {static} - systems : HashMap<Integer, BusControlSystem>
+        - travellers : HashMap<Integer, BusTravellerMovement>
+        + busHasStopped()
+        {static} + getBusControlSystem()
+        + getBusStops()
+        + getMap()
+        + registerBus()
+        + registerTraveller()
+        {static} + reset()
+        + setBusStops()
+        + setMap()
+        - BusControlSystem()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusMovement {
+        - id : int
+        {static} - nextID : int
+        - startMode : boolean
+        - stops : List<Coord>
+        + BusMovement()
+        + BusMovement()
+        + getID()
+        + getInitialLocation()
+        + getPath()
+        + replicate()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusTravellerMovement {
+        {static} + PROBABILITIES_STRING : String
+        {static} + PROBABILITY_TAKE_OTHER_BUS : String
+        {static} + STATE_DECIDED_TO_ENTER_A_BUS : int
+        {static} + STATE_TRAVELLING_ON_BUS : int
+        {static} + STATE_WAITING_FOR_BUS : int
+        {static} + STATE_WALKING_ELSEWHERE : int
+        - id : int
+        {static} - nextID : int
+        - probTakeOtherBus : double
+        - probabilities : double[]
+        - state : int
+        - takeBus : boolean
+        + BusTravellerMovement()
+        + BusTravellerMovement()
+        + enterBus()
+        + getID()
+        + getInitialLocation()
+        + getLastLocation()
+        + getLocation()
+        + getPath()
+        + getState()
+        + isReady()
+        + replicate()
+        {static} + reset()
+        + setLocation()
+        + setNextRoute()
+        # generateWaitTime()
+        {static} - getClosestCoordinate()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusTravellerMovement.ContinueBusTripDecider {
+        - probabilities : double[]
+        - rng : Random
+        - state : int
+        + ContinueBusTripDecider()
+        + continueTrip()
+        - incState()
+        - resetState()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.CarMovement {
+        + CarMovement()
+        + CarMovement()
+        + getPath()
+        + isReady()
+        + setNextRoute()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ClusterMovement {
+        {static} + CLUSTER_CENTER : String
+        {static} + CLUSTER_RANGE : String
+        - p_range : double
+        - p_x_center : int
+        - p_y_center : int
+        + ClusterMovement()
+        + getMaxX()
+        + getMaxY()
+        + replicate()
+        # randomCoord()
+        - ClusterMovement()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningActivityControlSystem {
+        {static} - controlSystems : HashMap<Integer, EveningActivityControlSystem>
+        - eveningActivityNodes : HashMap<Integer, EveningActivityMovement>
+        - meetingSpots : List<Coord>
+        - nextTrips : EveningTrip[]
+        - rng : Random
+        + addEveningActivityNode()
+        {static} + getEveningActivityControlSystem()
+        + getEveningInstructions()
+        + getMeetingSpotForID()
+        {static} + reset()
+        + setMeetingSpots()
+        + setRandomNumberGenerator()
+        - EveningActivityControlSystem()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningActivityMovement {
+        {static} + EVENING_ACTIVITY_CONTROL_SYSTEM_NR_SETTING : String
+        {static} + MAX_GROUP_SIZE_SETTING : String
+        {static} + MAX_WAIT_TIME_SETTING : String
+        {static} + MEETING_SPOTS_FILE_SETTING : String
+        {static} + MIN_GROUP_SIZE_SETTING : String
+        {static} + MIN_WAIT_TIME_SETTING : String
+        {static} + NR_OF_MEETING_SPOTS_SETTING : String
+        {static} - EVENING_ACTIVITY_MODE : int
+        {static} - WALKING_TO_MEETING_SPOT_MODE : int
+        - id : int
+        - maxGroupSize : int
+        - minGroupSize : int
+        - mode : int
+        {static} - nextID : int
+        {static} - nrOfMeetingSpots : int
+        - ready : boolean
+        - readyToShop : boolean
+        + EveningActivityMovement()
+        + EveningActivityMovement()
+        + getID()
+        + getInitialLocation()
+        + getLastLocation()
+        + getMaxGroupSize()
+        + getMinGroupSize()
+        + getPath()
+        + getShoppingLocation()
+        + getShoppingLocationAndGetReady()
+        + isReady()
+        + isReadyToShop()
+        + replicate()
+        {static} + reset()
+        + setLocation()
+        + setMaxGroupSize()
+        + setMinGroupSize()
+        # generateWaitTime()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningTrip {
+        - eveningActivityNodes : EveningActivityMovement[]
+        - eveningActivityNodesInBuffer : int
+        - waitTimeAtEnd : double
+        + EveningTrip()
+        + addNode()
+        + allMembersPresent()
+        + getDestination()
+        + getLocation()
+        + getPath()
+        + getWaitTimeAtEnd()
+        + isFull()
+        + setDestination()
+        + setPath()
+        + setWaitTimeAtEnd()
+    }
+  }
+  
+
+  namespace movement {
+    abstract class movement.ExtendedMovementModel {
+        - getPathCalledOnce : boolean
+        + ExtendedMovementModel()
+        + ExtendedMovementModel()
+        + ExtendedMovementModel()
+        + getCurrentMovementModel()
+        + getPath()
+        {abstract} + newOrders()
+        + setCurrentMovementModel()
+        # generateWaitTime()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ExternalMovement {
+        {static} + EXTERNAL_MOVEMENT_NS : String
+        {static} + MOVEMENT_FILE_S : String
+        {static} + NROF_PRELOAD_S : String
+        {static} - DEF_INIT_LOC : Coord
+        {static} - MIN_AHEAD_INTERVALS : double
+        {static} - idMapping : Map<String, ExternalMovement>
+        {static} - initLocations : List<Tuple<String, Coord>>
+        {static} - initTime : double
+        {static} - inputFileName : String
+        - isActive : boolean
+        {static} - lastPreloadTime : double
+        - latestPathStartTime : double
+        {static} - nrofPreload : double
+        - pathQueue : Queue<Tuple<Double, Path>>
+        {static} - reader : ExternalMovementReader
+        {static} - samplingInterval : double
+        + ExternalMovement()
+        + getInitialLocation()
+        + getMaxX()
+        + getMaxY()
+        + getPath()
+        + isActive()
+        + nextPathAvailable()
+        + replicate()
+        {static} + reset()
+        - ExternalMovement()
+        - addLocation()
+        {static} - checkPathNeed()
+        {static} - readMorePaths()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ExternalPathMovement {
+        {static} + ACTIVITY_FILE_S : String
+        {static} + MOVEMENT_FILE_S : String
+        - active : List<ActiveTime>
+        - activeFile : String
+        - curPath : int
+        - paths : List<List<Entry>>
+        - traceFile : String
+        + ExternalPathMovement()
+        + ExternalPathMovement()
+        + getInitialLocation()
+        + getPath()
+        + isActive()
+        + nextPathAvailable()
+        + replicate()
+        + setHost()
+        - init()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.GridLocation {
+        {static} + GRIDLOC_NS : String
+        {static} + LOCATION_S : String
+        {static} + OFFSET_S : String
+        {static} + ROWS_S : String
+        {static} + SPACING_S : String
+        - cols : int
+        - nodeCount : int
+        - offset : double
+        - rows : int
+        - spacing : double
+        - startCoords : double[]
+        + GridLocation()
+        + GridLocation()
+        + getInitialLocation()
+        + getPath()
+        + nextPathAvailable()
+        + replicate()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.HomeActivityMovement {
+        {static} + HOME_LOCATIONS_FILE_SETTING : String
+        {static} + STD_FOR_TIME_DIFF_SETTING : String
+        {static} - AT_HOME_MODE : int
+        {static} - DAY_LENGTH : int
+        {static} - READY_MODE : int
+        {static} - WALKING_HOME_MODE : int
+        - allHomes : List<Coord>
+        - distance : int
+        - mode : int
+        - timeDiffSTD : int
+        - timeDifference : int
+        + HomeActivityMovement()
+        + HomeActivityMovement()
+        + getHomeLocation()
+        + getInitialLocation()
+        + getLastLocation()
+        + getPath()
+        + isReady()
+        + replicate()
+        + setLocation()
+        # generateWaitTime()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.LinearFormation {
+        {static} + END_LOCATION_S : String
+        {static} + LINEAR_FORMATION_NS : String
+        {static} + START_LOCATION_S : String
+        - lastIndex : int
+        - nodeCount : int
+        + LinearFormation()
+        + LinearFormation()
+        + getInitialLocation()
+        + getPath()
+        + nextPathAvailable()
+        + replicate()
+        - calculateInitLocation()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.LinearMovement {
+        {static} + END_LOCATION_S : String
+        {static} + INIT_LOC_S : String
+        {static} + LINEAR_MOVEMENT_NS : String
+        {static} + START_LOCATION_S : String
+        {static} + TARGET_S : String
+        - initLocType : int
+        - lastIndex : int
+        - nodeCount : int
+        - targetType : int
+        + LinearMovement()
+        + LinearMovement()
+        + getInitialLocation()
+        + getMaxX()
+        + getMaxY()
+        + getPath()
+        + nextPathAvailable()
+        + replicate()
+        - calculateEndTarget()
+        - calculateLocation()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.MapBasedMovement {
+        {static} + FILE_S : String
+        {static} + MAP_BASE_MOVEMENT_NS : String
+        {static} + MAP_SELECT_S : String
+        {static} + NROF_FILES_S : String
+        # backAllowed : boolean
+        # maxPathLength : int
+        # minPathLength : int
+        {static} - cachedMap : SimMap
+        {static} - cachedMapFiles : List<String>
+        - nrofMapFilesRead : int
+        - okMapNodeTypes : int[]
+        + MapBasedMovement()
+        + MapBasedMovement()
+        + getInitialLocation()
+        + getLastLocation()
+        + getMap()
+        + getPath()
+        + isReady()
+        + replicate()
+        + setLocation()
+        # MapBasedMovement()
+        # getOkMapNodeTypes()
+        # selectRandomOkNode()
+        - checkCache()
+        - checkCoordValidity()
+        - checkMapConnectedness()
+        - readMap()
+        - readOkMapNodeTypes()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.MapRouteMovement {
+        {static} + ROUTE_FILE_S : String
+        {static} + ROUTE_FIRST_STOP_S : String
+        {static} + ROUTE_TYPE_S : String
+        - allRoutes : List<MapRoute>
+        - firstStopIndex : int
+        - nextRouteIndex : Integer
+        + MapRouteMovement()
+        + getInitialLocation()
+        + getLastLocation()
+        + getPath()
+        + getStops()
+        + replicate()
+        # MapRouteMovement()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ModifiedRandomDirection {
+        + ModifiedRandomDirection()
+        + ModifiedRandomDirection()
+        + replicate()
+        # getTravelFraction()
+    }
+  }
+  
+
+  namespace movement {
+    abstract class movement.MovementModel {
+        {static} + DEF_SPEEDS : double[]
+        {static} + DEF_WAIT_TIMES : double[]
+        {static} + MOVEMENT_MODEL_NS : String
+        {static} + RNG_SEED : String
+        {static} + SPEED : String
+        {static} + WAIT_TIME : String
+        {static} + WORLD_SIZE : String
+        # maxSpeed : double
+        # maxWaitTime : double
+        # minSpeed : double
+        # minWaitTime : double
+        {static} # rng : Random
+        - maxX : int
+        - maxY : int
+        + MovementModel()
+        + MovementModel()
+        + MovementModel()
+        + getComBus()
+        + getHost()
+        {abstract} + getInitialLocation()
+        + getMaxX()
+        + getMaxY()
+        {abstract} + getPath()
+        + isActive()
+        + nextPathAvailable()
+        {abstract} + replicate()
+        {static} + reset()
+        + setComBus()
+        + setHost()
+        + toString()
+        # generateSpeed()
+        # generateWaitTime()
+        {static} - checkMinAndMaxSetting()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.OfficeActivityMovement {
+        {static} + NR_OF_OFFICES_SETTING : String
+        {static} + OFFICE_LOCATIONS_FILE_SETTING : String
+        {static} + OFFICE_MAX_WAIT_TIME_SETTING : String
+        {static} + OFFICE_MIN_WAIT_TIME_SETTING : String
+        {static} + OFFICE_SIZE_SETTING : String
+        {static} + OFFICE_WAIT_TIME_PARETO_COEFF_SETTING : String
+        {static} + WORK_DAY_LENGTH_SETTING : String
+        {static} - AT_OFFICE_MODE : int
+        {static} - WALKING_TO_OFFICE_MODE : int
+        - allOffices : List<Coord>
+        - distance : int
+        - mode : int
+        {static} - nrOfOffices : int
+        - officeMaxWaitTime : double
+        - officeMinWaitTime : double
+        - officeWaitTimeParetoCoeff : double
+        - ready : boolean
+        - sittingAtDesk : boolean
+        - startedWorkingTime : int
+        - workDayLength : int
+        + OfficeActivityMovement()
+        + OfficeActivityMovement()
+        + getInitialLocation()
+        + getLastLocation()
+        + getOfficeLocation()
+        + getPath()
+        + getRandomCoorinateInsideOffice()
+        + isReady()
+        + replicate()
+        + setLocation()
+        # generateWaitTime()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.Path {
+        - coords : List<Coord>
+        - nextWpIndex : int
+        - speeds : List<Double>
+        + Path()
+        + Path()
+        + Path()
+        + addWaypoint()
+        + addWaypoint()
+        + getCoords()
+        + getNextWaypoint()
+        + getSpeed()
+        + getSpeeds()
+        + hasNext()
+        + setSpeed()
+        + toString()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomDirection {
+        + RandomDirection()
+        + RandomDirection()
+        + getInitialLocation()
+        + getPath()
+        + replicate()
+        # getTravelFraction()
+        - getBottomParams()
+        - getLeftParams()
+        - getRandomWaypoint()
+        - getRightParams()
+        - getTopParams()
+        - hitTestBottom()
+        - hitTestLeft()
+        - hitTestRight()
+        - hitTestTop()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomWalk {
+        - maxDistance : double
+        - minDistance : double
+        + RandomWalk()
+        + getInitialLocation()
+        + getLastLocation()
+        + getPath()
+        + isReady()
+        + replicate()
+        + setLocation()
+        - RandomWalk()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomWaypoint {
+        {static} - PATH_LENGTH : int
+        + RandomWaypoint()
+        + getInitialLocation()
+        + getPath()
+        + replicate()
+        # RandomWaypoint()
+        # randomCoord()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ShortestPathMapBasedMovement {
+        + ShortestPathMapBasedMovement()
+        + getPath()
+        + replicate()
+        # ShortestPathMapBasedMovement()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.StationaryMovement {
+        {static} + LOCATION_S : String
+        + StationaryMovement()
+        + StationaryMovement()
+        + getInitialLocation()
+        + getPath()
+        + nextPathAvailable()
+        + replicate()
+    }
+  }
+  
+
+  namespace movement {
+    interface movement.SwitchableMovement {
+        {abstract} + getLastLocation()
+        {abstract} + isReady()
+        {abstract} + setLocation()
+    }
+  }
+  
+
+  namespace movement {
+    interface movement.TransportMovement {
+        {abstract} + setNextRoute()
+    }
+  }
+  
+
+  namespace movement {
+    class movement.WorkingDayMovement {
+        {static} + PROBABILITY_TO_GO_SHOPPING_SETTING : String
+        {static} + PROBABILITY_TO_OWN_CAR_SETTING : String
+        {static} - BUS_TO_EVENING_ACTIVITY_MODE : int
+        {static} - BUS_TO_HOME_MODE : int
+        {static} - BUS_TO_WORK_MODE : int
+        {static} - EVENING_ACTIVITY_MODE : int
+        {static} - HOME_MODE : int
+        {static} - WORK_MODE : int
+        - doEveningActivityProb : double
+        - mode : int
+        - ownCarProb : double
+        + WorkingDayMovement()
+        + WorkingDayMovement()
+        + getHomeLocation()
+        + getInitialLocation()
+        + getOfficeLocation()
+        + getShoppingLocation()
+        + newOrders()
+        + replicate()
+    }
+  }
+  
+
+  movement.BusControlSystem o-- movement.map.SimMap : simMap
+  movement.BusMovement -up-|> movement.MapRouteMovement
+  movement.BusMovement o-- movement.BusControlSystem : controlSystem
+  movement.BusTravellerMovement .up.|> movement.SwitchableMovement
+  movement.BusTravellerMovement .up.|> movement.TransportMovement
+  movement.BusTravellerMovement -up-|> movement.MapBasedMovement
+  movement.BusTravellerMovement o-- movement.BusTravellerMovement.ContinueBusTripDecider : cbtd
+  movement.BusTravellerMovement o-- movement.BusControlSystem : controlSystem
+  movement.BusTravellerMovement o-- core.Coord : endBusStop
+  movement.BusTravellerMovement o-- core.Coord : latestBusStop
+  movement.BusTravellerMovement o-- core.Coord : location
+  movement.BusTravellerMovement o-- movement.Path : nextPath
+  movement.BusTravellerMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.BusTravellerMovement o-- core.Coord : startBusStop
+  movement.BusTravellerMovement +-down- movement.BusTravellerMovement.ContinueBusTripDecider
+  movement.CarMovement .up.|> movement.SwitchableMovement
+  movement.CarMovement .up.|> movement.TransportMovement
+  movement.CarMovement -up-|> movement.MapBasedMovement
+  movement.CarMovement o-- core.Coord : from
+  movement.CarMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.CarMovement o-- core.Coord : to
+  movement.ClusterMovement -up-|> movement.RandomWaypoint
+  movement.EveningActivityMovement .up.|> movement.SwitchableMovement
+  movement.EveningActivityMovement -up-|> movement.MapBasedMovement
+  movement.EveningActivityMovement o-- core.Coord : lastWaypoint
+  movement.EveningActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.EveningActivityMovement o-- movement.EveningActivityControlSystem : scs
+  movement.EveningActivityMovement o-- core.Coord : startAtLocation
+  movement.EveningActivityMovement o-- movement.EveningTrip : trip
+  movement.EveningTrip o-- core.Coord : destination
+  movement.EveningTrip o-- core.Coord : location
+  movement.EveningTrip o-- movement.Path : path
+  movement.ExtendedMovementModel -up-|> movement.MovementModel
+  movement.ExtendedMovementModel o-- movement.SwitchableMovement : currentMovementModel
+  movement.ExternalMovement -up-|> movement.MovementModel
+  movement.ExternalMovement o-- core.Coord : intialLocation
+  movement.ExternalMovement o-- core.Coord : latestLocation
+  movement.ExternalMovement o-- movement.Path : latestPath
+  movement.ExternalPathMovement -up-|> movement.MovementModel
+  movement.GridLocation -up-|> movement.MovementModel
+  movement.GridLocation o-- core.Coord : loc
+  movement.HomeActivityMovement .up.|> movement.SwitchableMovement
+  movement.HomeActivityMovement -up-|> movement.MapBasedMovement
+  movement.HomeActivityMovement o-- core.Coord : homeLocation
+  movement.HomeActivityMovement o-- core.Coord : lastWaypoint
+  movement.HomeActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.LinearFormation -up-|> movement.MovementModel
+  movement.LinearFormation o-- core.Coord : endLoc
+  movement.LinearFormation o-- core.Coord : loc
+  movement.LinearFormation o-- core.Coord : startLoc
+  movement.LinearMovement -up-|> movement.MovementModel
+  movement.LinearMovement o-- core.Coord : endLoc
+  movement.LinearMovement o-- core.Coord : initLoc
+  movement.LinearMovement o-- movement.Path : nextPath
+  movement.LinearMovement o-- core.Coord : startLoc
+  movement.MapBasedMovement .up.|> movement.SwitchableMovement
+  movement.MapBasedMovement -up-|> movement.MovementModel
+  movement.MapBasedMovement o-- movement.map.MapNode : lastMapNode
+  movement.MapBasedMovement o-- movement.map.SimMap : map
+  movement.MapRouteMovement .up.|> movement.SwitchableMovement
+  movement.MapRouteMovement -up-|> movement.MapBasedMovement
+  movement.MapRouteMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.MapRouteMovement o-- movement.map.MapRoute : route
+  movement.ModifiedRandomDirection -up-|> movement.RandomDirection
+  movement.MovementModel o-- core.ModuleCommunicationBus : comBus
+  movement.MovementModel o-- core.DTNHost : host
+  movement.MovementModel o-- util.ActivenessHandler : ah
+  movement.OfficeActivityMovement .up.|> movement.SwitchableMovement
+  movement.OfficeActivityMovement -up-|> movement.MapBasedMovement
+  movement.OfficeActivityMovement o-- core.Coord : deskLocation
+  movement.OfficeActivityMovement o-- core.Coord : lastWaypoint
+  movement.OfficeActivityMovement o-- core.Coord : officeLocation
+  movement.OfficeActivityMovement o-- util.ParetoRNG : paretoRNG
+  movement.OfficeActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.RandomDirection -up-|> movement.MovementModel
+  movement.RandomDirection o-- core.Coord : lastWaypoint
+  movement.RandomWalk .up.|> movement.SwitchableMovement
+  movement.RandomWalk -up-|> movement.MovementModel
+  movement.RandomWalk o-- core.Coord : lastWaypoint
+  movement.RandomWaypoint -up-|> movement.MovementModel
+  movement.RandomWaypoint o-- core.Coord : lastWaypoint
+  movement.ShortestPathMapBasedMovement .up.|> movement.SwitchableMovement
+  movement.ShortestPathMapBasedMovement -up-|> movement.MapBasedMovement
+  movement.ShortestPathMapBasedMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.ShortestPathMapBasedMovement o-- movement.map.PointsOfInterest : pois
+  movement.StationaryMovement -up-|> movement.MovementModel
+  movement.StationaryMovement o-- core.Coord : loc
+  movement.WorkingDayMovement -up-|> movement.ExtendedMovementModel
+  movement.WorkingDayMovement o-- movement.BusTravellerMovement : busTravellerMM
+  movement.WorkingDayMovement o-- movement.CarMovement : carMM
+  movement.WorkingDayMovement o-- movement.EveningActivityMovement : eveningActivityMovement
+  movement.WorkingDayMovement o-- movement.HomeActivityMovement : homeMM
+  movement.WorkingDayMovement o-- movement.TransportMovement : movementUsedForTransfers
+  movement.WorkingDayMovement o-- movement.OfficeActivityMovement : workerMM
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

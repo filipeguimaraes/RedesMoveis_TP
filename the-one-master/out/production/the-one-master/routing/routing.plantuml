@@ -1,0 +1,525 @@
+@startuml
+
+title __ROUTING's Class Diagram__\n
+
+  namespace routing {
+    abstract class routing.ActiveRouter {
+        {static} + DELETE_DELIVERED_S : String
+        {static} + RESPONSE_PREFIX : String
+        {static} + TTL_CHECK_INTERVAL : int
+        # deleteDelivered : boolean
+        # sendingConnections : ArrayList<Connection>
+        - lastTtlCheck : double
+        + ActiveRouter()
+        + changedConnection()
+        + createNewMessage()
+        + getRoutingInfo()
+        + hasEnergy()
+        + init()
+        + isSending()
+        + isTransferring()
+        + messageTransferred()
+        + receiveMessage()
+        + requestDeliverableMessages()
+        + update()
+        # ActiveRouter()
+        # addToSendingConnections()
+        # canStartTransfer()
+        # checkReceiving()
+        # dropExpiredMessages()
+        # exchangeDeliverableMessages()
+        # getConnections()
+        # getMessagesForConnected()
+        # getNextMessageToRemove()
+        # makeRoomForMessage()
+        # makeRoomForNewMessage()
+        # shuffleMessages()
+        # startTransfer()
+        # transferAborted()
+        # transferDone()
+        # tryAllMessages()
+        # tryAllMessagesToAllConnections()
+        # tryMessagesForConnected()
+        # tryMessagesToConnections()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.DirectDeliveryRouter {
+        + DirectDeliveryRouter()
+        + replicate()
+        + update()
+        # DirectDeliveryRouter()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.EpidemicOracleRouter {
+        {static} - allRouters : List<EpidemicOracleRouter>
+        + EpidemicOracleRouter()
+        + changedConnection()
+        + createNewMessage()
+        + messageTransferred()
+        + removeDeliveredMessage()
+        + replicate()
+        {static} + reset()
+        + update()
+        # EpidemicOracleRouter()
+        # checkReceiving()
+        # transferDone()
+        - sendMessageToConnected()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.EpidemicRouter {
+        + EpidemicRouter()
+        + replicate()
+        + update()
+        # EpidemicRouter()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.FirstContactRouter {
+        + FirstContactRouter()
+        + replicate()
+        + update()
+        # FirstContactRouter()
+        # checkReceiving()
+        # transferDone()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.LifeRouter {
+        {static} + NM_COUNT_S : String
+        - countRange : int[]
+        + LifeRouter()
+        + replicate()
+        + update()
+        # LifeRouter()
+        # checkReceiving()
+        - getPeerMessageCount()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouter {
+        {static} + ALPHA_S : String
+        {static} + BYTES_TRANSFERRED_AVG_SAMPLES : int
+        {static} + DEFAULT_ALPHA : double
+        {static} + DEFAULT_PROB_SET_MAX_SIZE : int
+        {static} + MAXPROP_NS : String
+        {static} + PROB_SET_MAX_SIZE_S : String
+        - ackedMessageIds : Set<String>
+        - allProbs : Map<Integer, MeetingProbabilitySet>
+        - alpha : double
+        - avgSamples : int[]
+        - avgTransferredBytes : int
+        - costsForMessages : Map<Integer, Double>
+        - nextSampleIndex : int
+        {static} - probSetMaxSize : int
+        - sentMessages : Map<DTNHost, Set<String>>
+        + MaxPropRouter()
+        + calcThreshold()
+        + changedConnection()
+        + getCost()
+        + getRoutingInfo()
+        + messageTransferred()
+        + replicate()
+        + update()
+        # MaxPropRouter()
+        # getNextMessageToRemove()
+        # transferDone()
+        - deleteAckedMessages()
+        - tryOtherMessages()
+        - updateTransferredBytesAvg()
+        - updateTransitiveProbs()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouter.MaxPropComparator {
+        - threshold : int
+        + MaxPropComparator()
+        + MaxPropComparator()
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouter.MaxPropTupleComparator {
+        - threshold : int
+        + MaxPropTupleComparator()
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouterWithEstimation {
+        {static} + BYTES_TRANSFERRED_AVG_SAMPLES : int
+        {static} + DEFAULT_ALPHA : double
+        {static} + MAXPROP_NS : String
+        {static} + TIME_SCALE_S : String
+        - ackedMessageIds : Set<String>
+        - allProbs : Map<Integer, MeetingProbabilitySet>
+        - alpha : double
+        - avgSamples : int[]
+        - avgTransferredBytes : int
+        - costsForMessages : Map<Integer, Double>
+        - encounters : Map<DTNHost, Integer>
+        - meanENC : double
+        - meanIET : double
+        - meetings : Map<DTNHost, Double>
+        - nextSampleIndex : int
+        - nrofSamplesENC : int
+        - nrofSamplesIET : int
+        - nrofTotENC : int
+        - timescale : int
+        + MaxPropRouterWithEstimation()
+        + calcThreshold()
+        + changedConnection()
+        + getCost()
+        + getRoutingInfo()
+        + messageTransferred()
+        + replicate()
+        + update()
+        # MaxPropRouterWithEstimation()
+        # getNextMessageToRemove()
+        # transferDone()
+        # updateEstimators()
+        # updateParam()
+        - deleteAckedMessages()
+        - initMeetings()
+        - tryOtherMessages()
+        - updateTransferredBytesAvg()
+        - updateTransitiveProbs()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouterWithEstimation.MaxPropComparator {
+        - threshold : int
+        + MaxPropComparator()
+        + MaxPropComparator()
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouterWithEstimation.MaxPropTupleComparator {
+        - threshold : int
+        + MaxPropTupleComparator()
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    abstract class routing.MessageRouter {
+        {static} + B_SIZE_S : String
+        {static} + DENIED_LOW_RESOURCES : int
+        {static} + DENIED_NO_SPACE : int
+        {static} + DENIED_OLD : int
+        {static} + DENIED_POLICY : int
+        {static} + DENIED_TTL : int
+        {static} + DENIED_UNSPECIFIED : int
+        {static} + MAX_TTL_VALUE : int
+        {static} + MSG_TTL_S : String
+        {static} + Q_MODE_FIFO : int
+        {static} + Q_MODE_RANDOM : int
+        {static} + RCV_OK : int
+        {static} + SEND_QUEUE_MODE_S : String
+        {static} + STR_Q_MODE_FIFO : String
+        {static} + STR_Q_MODE_RANDOM : String
+        {static} + TRY_LATER_BUSY : int
+        # msgTtl : int
+        - applications : HashMap<String, Collection<Application>>
+        - blacklistedMessages : HashMap<String, Object>
+        - bufferSize : long
+        - deliveredMessages : HashMap<String, Message>
+        - incomingMessages : HashMap<String, Message>
+        - mListeners : List<MessageListener>
+        - messages : HashMap<String, Message>
+        - sendQueueMode : int
+        + MessageRouter()
+        + addApplication()
+        {abstract} + changedConnection()
+        + createNewMessage()
+        + deleteMessage()
+        + getApplications()
+        + getBufferSize()
+        + getFreeBufferSize()
+        + getMessageCollection()
+        + getNrofMessages()
+        + getRoutingInfo()
+        + hasMessage()
+        + init()
+        + messageAborted()
+        + messageTransferred()
+        + receiveMessage()
+        {abstract} + replicate()
+        + requestDeliverableMessages()
+        + sendMessage()
+        + toString()
+        + update()
+        # MessageRouter()
+        # addToMessages()
+        # compareByQueueMode()
+        # getHost()
+        # getMessage()
+        # isBlacklistedMessage()
+        # isDeliveredMessage()
+        # isIncomingMessage()
+        # putToIncomingBuffer()
+        # removeFromIncomingBuffer()
+        # removeFromMessages()
+        # sortByQueueMode()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.PassiveRouter {
+        + PassiveRouter()
+        + changedConnection()
+        + replicate()
+        + update()
+        # PassiveRouter()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouter {
+        {static} + BETA_S : String
+        {static} + DEFAULT_BETA : double
+        {static} + DEFAULT_GAMMA : double
+        {static} + GAMMA_S : String
+        {static} + PROPHET_NS : String
+        {static} + P_INIT : double
+        {static} + SECONDS_IN_UNIT_S : String
+        - beta : double
+        - gamma : double
+        - lastAgeUpdate : double
+        - preds : Map<DTNHost, Double>
+        - secondsInTimeUnit : int
+        + ProphetRouter()
+        + changedConnection()
+        + getPredFor()
+        + getRoutingInfo()
+        + replicate()
+        + update()
+        # ProphetRouter()
+        - ageDeliveryPreds()
+        - getDeliveryPreds()
+        - initPreds()
+        - tryOtherMessages()
+        - updateDeliveryPredFor()
+        - updateTransitivePreds()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouter.TupleComparator {
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouterWithEstimation {
+        {static} + BETA_S : String
+        {static} + DEFAULT_BETA : double
+        {static} + DEFAULT_PTARGET : double
+        {static} + GAMMA : double
+        {static} + PROPHET_NS : String
+        {static} + P_AVG_TARGET_S : String
+        {static} + P_INIT : double
+        {static} + TIME_SCALE_S : String
+        - beta : double
+        - gamma : double
+        - lastAgeUpdate : double
+        - meanIET : double
+        - meetings : Map<DTNHost, Double>
+        - nrofSamples : int
+        - pinit : double
+        - preds : Map<DTNHost, Double>
+        - ptavg : double
+        - timescale : int
+        + ProphetRouterWithEstimation()
+        + changedConnection()
+        + getPredFor()
+        + getRoutingInfo()
+        + replicate()
+        + update()
+        # ProphetRouterWithEstimation()
+        - ageDeliveryPreds()
+        - getDeliveryPreds()
+        - initMeetings()
+        - initPreds()
+        - tryOtherMessages()
+        - updateDeliveryPredFor()
+        - updateIET()
+        - updateParams()
+        - updateTransitivePreds()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouterWithEstimation.TupleComparator {
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetV2Router {
+        {static} + BETA_S : String
+        {static} + DEFAULT_BETA : double
+        {static} + DEFAULT_GAMMA : double
+        {static} + GAMMA_S : String
+        {static} + I_TYP : double
+        {static} + PEncMax : double
+        {static} + PROPHET_NS : String
+        {static} + SECONDS_IN_UNIT_S : String
+        ~ randomGenerator : Random
+        - beta : double
+        - gamma : double
+        - lastAgeUpdate : double
+        - lastEncouterTime : Map<DTNHost, Double>
+        - preds : Map<DTNHost, Double>
+        - secondsInTimeUnit : int
+        + ProphetV2Router()
+        + changedConnection()
+        + getEncTimeFor()
+        + getPredFor()
+        + getRoutingInfo()
+        + replicate()
+        + update()
+        # ProphetV2Router()
+        - ageDeliveryPreds()
+        - getDeliveryPreds()
+        - initEncTimes()
+        - initPreds()
+        - tryOtherMessages()
+        - updateDeliveryPredFor()
+        - updateTransitivePreds()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetV2Router.TupleComparator {
+        + compare()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.SprayAndWaitRouter {
+        {static} + BINARY_MODE : String
+        {static} + MSG_COUNT_PROPERTY : String
+        {static} + NROF_COPIES : String
+        {static} + SPRAYANDWAIT_NS : String
+        # initialNrofCopies : int
+        # isBinary : boolean
+        + SprayAndWaitRouter()
+        + createNewMessage()
+        + messageTransferred()
+        + receiveMessage()
+        + replicate()
+        + update()
+        # SprayAndWaitRouter()
+        # getMessagesWithCopiesLeft()
+        # transferDone()
+    }
+  }
+  
+
+  namespace routing {
+    class routing.WaveRouter {
+        {static} + CUSTODY_S : String
+        {static} + IMMUNITY_S : String
+        - custodyFraction : double
+        - custodyMessages : Map<String, Double>
+        - immunityTime : double
+        - recentMessages : Map<String, Double>
+        + WaveRouter()
+        + getRoutingInfo()
+        + messageTransferred()
+        + replicate()
+        + update()
+        # WaveRouter()
+        # checkReceiving()
+        # getNextMessageToRemove()
+        # transferDone()
+    }
+  }
+  
+
+  routing.ActiveRouter -up-|> routing.MessageRouter
+  routing.ActiveRouter o-- routing.util.EnergyModel : energy
+  routing.ActiveRouter o-- routing.util.MessageTransferAcceptPolicy : policy
+  routing.DirectDeliveryRouter -up-|> routing.ActiveRouter
+  routing.EpidemicOracleRouter -up-|> routing.ActiveRouter
+  routing.EpidemicRouter -up-|> routing.ActiveRouter
+  routing.FirstContactRouter -up-|> routing.ActiveRouter
+  routing.LifeRouter -up-|> routing.ActiveRouter
+  routing.MaxPropRouter -up-|> routing.ActiveRouter
+  routing.MaxPropRouter o-- routing.maxprop.MaxPropDijkstra : dijkstra
+  routing.MaxPropRouter o-- core.DTNHost : lastCostFrom
+  routing.MaxPropRouter o-- routing.maxprop.MeetingProbabilitySet : probs
+  routing.MaxPropRouter +-down- routing.MaxPropRouter.MaxPropComparator
+  routing.MaxPropRouter +-down- routing.MaxPropRouter.MaxPropTupleComparator
+  routing.MaxPropRouter.MaxPropComparator .up.|> java.util.Comparator
+  routing.MaxPropRouter.MaxPropComparator o-- core.DTNHost : from1
+  routing.MaxPropRouter.MaxPropComparator o-- core.DTNHost : from2
+  routing.MaxPropRouter.MaxPropTupleComparator .up.|> java.util.Comparator
+  routing.MaxPropRouterWithEstimation -up-|> routing.ActiveRouter
+  routing.MaxPropRouterWithEstimation o-- routing.maxprop.MaxPropDijkstra : dijkstra
+  routing.MaxPropRouterWithEstimation o-- core.DTNHost : lastCostFrom
+  routing.MaxPropRouterWithEstimation o-- routing.maxprop.MeetingProbabilitySet : probs
+  routing.MaxPropRouterWithEstimation +-down- routing.MaxPropRouterWithEstimation.MaxPropComparator
+  routing.MaxPropRouterWithEstimation +-down- routing.MaxPropRouterWithEstimation.MaxPropTupleComparator
+  routing.MaxPropRouterWithEstimation.MaxPropComparator .up.|> java.util.Comparator
+  routing.MaxPropRouterWithEstimation.MaxPropComparator o-- core.DTNHost : from1
+  routing.MaxPropRouterWithEstimation.MaxPropComparator o-- core.DTNHost : from2
+  routing.MaxPropRouterWithEstimation.MaxPropTupleComparator .up.|> java.util.Comparator
+  routing.MessageRouter o-- core.DTNHost : host
+  routing.PassiveRouter -up-|> routing.MessageRouter
+  routing.ProphetRouter -up-|> routing.ActiveRouter
+  routing.ProphetRouter +-down- routing.ProphetRouter.TupleComparator
+  routing.ProphetRouter.TupleComparator .up.|> java.util.Comparator
+  routing.ProphetRouterWithEstimation -up-|> routing.ActiveRouter
+  routing.ProphetRouterWithEstimation +-down- routing.ProphetRouterWithEstimation.TupleComparator
+  routing.ProphetRouterWithEstimation.TupleComparator .up.|> java.util.Comparator
+  routing.ProphetV2Router -up-|> routing.ActiveRouter
+  routing.ProphetV2Router +-down- routing.ProphetV2Router.TupleComparator
+  routing.ProphetV2Router.TupleComparator .up.|> java.util.Comparator
+  routing.SprayAndWaitRouter -up-|> routing.ActiveRouter
+  routing.WaveRouter -up-|> routing.ActiveRouter
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

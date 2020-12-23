@@ -1,0 +1,1782 @@
+@startuml
+
+title __THE-ONE-MASTER's Class Diagram__\n
+
+  namespace applications {
+    class applications.PingApplication {
+    }
+  }
+  
+
+  namespace core {
+    abstract class core.Application {
+    }
+  }
+  
+
+  namespace core {
+    interface core.ApplicationListener {
+    }
+  }
+  
+
+  namespace core {
+    class core.ArithmeticCondition {
+    }
+  }
+  
+
+  namespace core {
+    class core.CBRConnection {
+    }
+  }
+  
+
+  namespace core {
+    abstract class core.Connection {
+    }
+  }
+  
+
+  namespace core {
+    interface core.ConnectionListener {
+    }
+  }
+  
+
+  namespace core {
+    class core.Constants {
+    }
+  }
+  
+
+  namespace core {
+    class core.Coord {
+    }
+  }
+  
+
+  namespace core {
+    class core.DTN2Manager {
+    }
+  }
+  
+
+  namespace core {
+    class core.DTNHost {
+    }
+  }
+  
+
+  namespace core {
+    class core.DTNSim {
+    }
+  }
+  
+
+  namespace core {
+    class core.Debug {
+    }
+  }
+  
+
+  namespace core {
+    class core.Message {
+    }
+  }
+  
+
+  namespace core {
+    interface core.MessageListener {
+    }
+  }
+  
+
+  namespace core {
+    class core.ModuleCommunicationBus {
+    }
+  }
+  
+
+  namespace core {
+    interface core.ModuleCommunicationListener {
+    }
+  }
+  
+
+  namespace core {
+    interface core.MovementListener {
+    }
+  }
+  
+
+  namespace core {
+    abstract class core.NetworkInterface {
+    }
+  }
+  
+
+  namespace core {
+    class core.Settings {
+    }
+  }
+  
+
+  namespace core {
+    class core.SettingsError {
+    }
+  }
+  
+
+  namespace core {
+    class core.SimClock {
+    }
+  }
+  
+
+  namespace core {
+    class core.SimError {
+    }
+  }
+  
+
+  namespace core {
+    class core.SimScenario {
+    }
+  }
+  
+
+  namespace core {
+    interface core.UpdateListener {
+    }
+  }
+  
+
+  namespace core {
+    class core.VBRConnection {
+    }
+  }
+  
+
+  namespace core {
+    class core.World {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.DTNSimGUI {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogControl {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogControlPanel {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogPanel {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.GUIControls {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.InfoPanel {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.MainWindow {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.NodeChooser {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.RoutingInfoWindow {
+    }
+  }
+  
+
+  namespace gui {
+    class gui.SimMenuBar {
+    }
+  }
+  
+
+  namespace gui {
+    namespace nodefilter {
+      interface gui.nodefilter.NodeFilter {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace nodefilter {
+      class gui.nodefilter.NodeMessageFilter {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.MapGraphic {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.MessageGraphic {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.NodeGraphic {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.PathGraphic {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.PlayField {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      abstract class gui.playfield.PlayFieldGraphic {
+      }
+    }
+  }
+  
+
+  namespace gui {
+    namespace playfield {
+      class gui.playfield.ScaleReferenceGraphic {
+      }
+    }
+  }
+  
+
+  namespace input {
+    class input.BinaryEventsReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.ConnectionEvent {
+    }
+  }
+  
+
+  namespace input {
+    class input.DTN2Events {
+    }
+  }
+  
+
+  namespace input {
+    interface input.EventQueue {
+    }
+  }
+  
+
+  namespace input {
+    class input.EventQueueHandler {
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalEvent {
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalEventsQueue {
+    }
+  }
+  
+
+  namespace input {
+    interface input.ExternalEventsReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalMovementReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.ExternalPathMovementReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageBurstGenerator {
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageCreateEvent {
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageDeleteEvent {
+    }
+  }
+  
+
+  namespace input {
+    abstract class input.MessageEvent {
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageEventGenerator {
+    }
+  }
+  
+
+  namespace input {
+    class input.MessageRelayEvent {
+    }
+  }
+  
+
+  namespace input {
+    class input.OneFromEachMessageGenerator {
+    }
+  }
+  
+
+  namespace input {
+    class input.OneToEachMessageGenerator {
+    }
+  }
+  
+
+  namespace input {
+    class input.ScheduledUpdatesQueue {
+    }
+  }
+  
+
+  namespace input {
+    class input.StandardEventsReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.WKTMapReader {
+    }
+  }
+  
+
+  namespace input {
+    class input.WKTReader {
+    }
+  }
+  
+
+  namespace interfaces {
+    class interfaces.ConnectivityGrid {
+    }
+  }
+  
+
+  namespace interfaces {
+    abstract class interfaces.ConnectivityOptimizer {
+    }
+  }
+  
+
+  namespace interfaces {
+    class interfaces.DistanceCapacityInterface {
+    }
+  }
+  
+
+  namespace interfaces {
+    class interfaces.InterferenceLimitedInterface {
+    }
+  }
+  
+
+  namespace interfaces {
+    class interfaces.SimpleBroadcastInterface {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusControlSystem {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.BusTravellerMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.CarMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ClusterMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningActivityControlSystem {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningActivityMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.EveningTrip {
+    }
+  }
+  
+
+  namespace movement {
+    abstract class movement.ExtendedMovementModel {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ExternalMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ExternalPathMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.GridLocation {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.HomeActivityMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.LinearFormation {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.LinearMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.MapBasedMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.MapRouteMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ModifiedRandomDirection {
+    }
+  }
+  
+
+  namespace movement {
+    abstract class movement.MovementModel {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.OfficeActivityMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.Path {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomDirection {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomWalk {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.RandomWaypoint {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.ShortestPathMapBasedMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.StationaryMovement {
+    }
+  }
+  
+
+  namespace movement {
+    interface movement.SwitchableMovement {
+    }
+  }
+  
+
+  namespace movement {
+    interface movement.TransportMovement {
+    }
+  }
+  
+
+  namespace movement {
+    class movement.WorkingDayMovement {
+    }
+  }
+  
+
+  namespace movement {
+    namespace map {
+      class movement.map.DijkstraPathFinder {
+      }
+    }
+  }
+  
+
+  namespace movement {
+    namespace map {
+      class movement.map.MapNode {
+      }
+    }
+  }
+  
+
+  namespace movement {
+    namespace map {
+      class movement.map.MapRoute {
+      }
+    }
+  }
+  
+
+  namespace movement {
+    namespace map {
+      class movement.map.PointsOfInterest {
+      }
+    }
+  }
+  
+
+  namespace movement {
+    namespace map {
+      class movement.map.SimMap {
+      }
+    }
+  }
+  
+
+  namespace report {
+    class report.AdjacencyGraphvizReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.BufferOccupancyReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityDtnsim2Report {
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityONEReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityReportConnector {
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactTimesReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactsDuringAnICTReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactsPerHourReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.CreatedMessagesReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.DTN2Reporter {
+    }
+  }
+  
+
+  namespace report {
+    class report.DeliveredMessagesReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.DistanceDelayReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.EncountersVSUniqueEncountersReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.EnergyLevelReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.EventLogReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.InterContactTimesReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.JumpSizeDistributionReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.LocationSnapshotReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageAvailabilityReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageCopyCountReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageDelayReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageDeliveryReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageGraphvizReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageLocationReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageStatsReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MovementListenerTestReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.MovementNs2Report {
+    }
+  }
+  
+
+  namespace report {
+    class report.NodeDensityReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.PingAppReporter {
+    }
+  }
+  
+
+  namespace report {
+    class report.RadiusOfGyrationReport {
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.Report {
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.SamplingReport {
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.SnapshotReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.TotalContactTimeReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.TotalEncountersReport {
+    }
+  }
+  
+
+  namespace report {
+    class report.UniqueEncountersReport {
+    }
+  }
+  
+
+  namespace routing {
+    abstract class routing.ActiveRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.DirectDeliveryRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.EpidemicOracleRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.EpidemicRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.FirstContactRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.LifeRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.MaxPropRouterWithEstimation {
+    }
+  }
+  
+
+  namespace routing {
+    abstract class routing.MessageRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.PassiveRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetRouterWithEstimation {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.ProphetV2Router {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.SprayAndWaitRouter {
+    }
+  }
+  
+
+  namespace routing {
+    class routing.WaveRouter {
+    }
+  }
+  
+
+  namespace routing {
+    namespace maxprop {
+      class routing.maxprop.MaxPropDijkstra {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace maxprop {
+      class routing.maxprop.MeetingProbabilitySet {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace schedule {
+      class routing.schedule.ScheduleDijkstra {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace schedule {
+      class routing.schedule.ScheduleEntry {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace schedule {
+      class routing.schedule.ScheduleOracle {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace util {
+      class routing.util.EnergyModel {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace util {
+      class routing.util.MessageTransferAcceptPolicy {
+      }
+    }
+  }
+  
+
+  namespace routing {
+    namespace util {
+      class routing.util.RoutingInfo {
+      }
+    }
+  }
+  
+
+  namespace test {
+    abstract class test.AbstractRouterTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ActivenessHandlerTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.AdjacencyGraphvizReportTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.AllTests {
+    }
+  }
+  
+
+  namespace test {
+    class test.ConnectionTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ContactTimesReportTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.CoordTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.DTNHostTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.DijkstraPathFinderTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.DistanceDelayReportTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.EpidemicRouterTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalEventsQueueTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalMovementReaderTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalMovementTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MapBasedMovementTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MapNodeTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MaxPropDijkstraTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MaxPropRouterTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageChecker {
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageGraphvizReportTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ModuleCommunicationBusTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.MovementListenerTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.PointsOfInterestTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ProphetRouterTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ScheduleDijkstraTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.ScheduledUpdatesQueueTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.SettingsTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.StationaryMovement {
+    }
+  }
+  
+
+  namespace test {
+    class test.TestDTNHost {
+    }
+  }
+  
+
+  namespace test {
+    class test.TestInterface {
+    }
+  }
+  
+
+  namespace test {
+    class test.TestSettings {
+    }
+  }
+  
+
+  namespace test {
+    class test.TestUtils {
+    }
+  }
+  
+
+  namespace test {
+    class test.TotalContactTimeReportTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.WKTPointReaderTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.WKTReaderTest {
+    }
+  }
+  
+
+  namespace test {
+    class test.WorldTest {
+    }
+  }
+  
+
+  namespace ui {
+    class ui.DTNSimTextUI {
+    }
+  }
+  
+
+  namespace ui {
+    abstract class ui.DTNSimUI {
+    }
+  }
+  
+
+  namespace util {
+    class util.ActivenessHandler {
+    }
+  }
+  
+
+  namespace util {
+    class util.ParetoRNG {
+    }
+  }
+  
+
+  namespace util {
+    class util.Range {
+    }
+  }
+  
+
+  namespace util {
+    class util.Tuple {
+    }
+  }
+  
+
+  applications.PingApplication -up-|> core.Application
+  core.CBRConnection -up-|> core.Connection
+  core.Connection o-- core.NetworkInterface : fromInterface
+  core.Connection o-- core.DTNHost : fromNode
+  core.Connection o-- core.DTNHost : msgFromNode
+  core.Connection o-- core.Message : msgOnFly
+  core.Connection o-- core.NetworkInterface : toInterface
+  core.Connection o-- core.DTNHost : toNode
+  core.Coord .up.|> java.lang.Cloneable
+  core.Coord .up.|> java.lang.Comparable
+  core.DTNHost .up.|> java.lang.Comparable
+  core.DTNHost o-- core.ModuleCommunicationBus : comBus
+  core.DTNHost o-- core.Coord : destination
+  core.DTNHost o-- core.Coord : location
+  core.DTNHost o-- movement.MovementModel : movement
+  core.DTNHost o-- movement.Path : path
+  core.DTNHost o-- routing.MessageRouter : router
+  core.Message .up.|> java.lang.Comparable
+  core.Message o-- core.DTNHost : from
+  core.Message o-- core.Message : requestMsg
+  core.Message o-- core.DTNHost : to
+  core.NetworkInterface .up.|> core.ModuleCommunicationListener
+  core.NetworkInterface o-- core.DTNHost : host
+  core.NetworkInterface o-- interfaces.ConnectivityOptimizer : optimizer
+  core.NetworkInterface o-- util.ActivenessHandler : ah
+  core.SettingsError -up-|> core.SimError
+  core.SimScenario .up.|> java.io.Serializable
+  core.SimScenario o-- input.EventQueueHandler : eqHandler
+  core.SimScenario o-- movement.map.SimMap : simMap
+  core.SimScenario o-- core.World : world
+  core.VBRConnection -up-|> core.Connection
+  core.World o-- input.EventQueue : nextEventQueue
+  core.World o-- input.ScheduledUpdatesQueue : scheduledUpdates
+  core.World o-- core.SimClock : simClock
+  gui.DTNSimGUI -up-|> ui.DTNSimUI
+  gui.DTNSimGUI o-- gui.EventLogPanel : eventLogPanel
+  gui.DTNSimGUI o-- gui.playfield.PlayField : field
+  gui.DTNSimGUI o-- gui.GUIControls : guiControls
+  gui.DTNSimGUI o-- gui.InfoPanel : infoPanel
+  gui.DTNSimGUI o-- gui.MainWindow : main
+  gui.EventLogControlPanel .up.|> java.awt.event.ActionListener
+  gui.EventLogControlPanel -up-|> javax.swing.JPanel
+  gui.EventLogPanel .up.|> core.ConnectionListener
+  gui.EventLogPanel .up.|> core.MessageListener
+  gui.EventLogPanel .up.|> java.awt.event.ActionListener
+  gui.EventLogPanel -up-|> javax.swing.JPanel
+  gui.EventLogPanel o-- gui.EventLogControl : conDownCheck
+  gui.EventLogPanel o-- gui.EventLogControl : conUpCheck
+  gui.EventLogPanel o-- gui.EventLogControlPanel : controls
+  gui.EventLogPanel o-- gui.DTNSimGUI : gui
+  gui.EventLogPanel o-- gui.EventLogControl : msgAbortCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgCreateCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgDeliveredCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgDropCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgRelayCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgRemoveCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgTransferStartCheck
+  gui.GUIControls .up.|> java.awt.event.ActionListener
+  gui.GUIControls .up.|> javax.swing.event.ChangeListener
+  gui.GUIControls -up-|> javax.swing.JPanel
+  gui.GUIControls o-- gui.DTNSimGUI : gui
+  gui.GUIControls o-- gui.playfield.PlayField : pf
+  gui.InfoPanel .up.|> java.awt.event.ActionListener
+  gui.InfoPanel -up-|> javax.swing.JPanel
+  gui.InfoPanel o-- gui.DTNSimGUI : gui
+  gui.InfoPanel o-- core.DTNHost : selectedHost
+  gui.InfoPanel o-- core.Message : selectedMessage
+  gui.MainWindow -up-|> javax.swing.JFrame
+  gui.NodeChooser .up.|> java.awt.event.ActionListener
+  gui.NodeChooser -up-|> javax.swing.JPanel
+  gui.NodeChooser o-- gui.DTNSimGUI : gui
+  gui.RoutingInfoWindow .up.|> java.awt.event.ActionListener
+  gui.RoutingInfoWindow -up-|> javax.swing.JFrame
+  gui.RoutingInfoWindow o-- core.DTNHost : host
+  gui.SimMenuBar .up.|> java.awt.event.ActionListener
+  gui.SimMenuBar -up-|> javax.swing.JMenuBar
+  gui.SimMenuBar o-- gui.NodeChooser : chooser
+  gui.SimMenuBar o-- gui.playfield.PlayField : field
+  gui.nodefilter.NodeMessageFilter .up.|> gui.nodefilter.NodeFilter
+  gui.playfield.MapGraphic -up-|> gui.playfield.PlayFieldGraphic
+  gui.playfield.MapGraphic o-- movement.map.SimMap : simMap
+  gui.playfield.MessageGraphic -up-|> gui.playfield.PlayFieldGraphic
+  gui.playfield.MessageGraphic o-- core.DTNHost : from
+  gui.playfield.MessageGraphic o-- core.DTNHost : to
+  gui.playfield.NodeGraphic -up-|> gui.playfield.PlayFieldGraphic
+  gui.playfield.NodeGraphic o-- core.DTNHost : node
+  gui.playfield.PathGraphic -up-|> gui.playfield.PlayFieldGraphic
+  gui.playfield.PlayField -up-|> javax.swing.JPanel
+  gui.playfield.PlayField o-- gui.DTNSimGUI : gui
+  gui.playfield.PlayField o-- gui.playfield.MapGraphic : mapGraphic
+  gui.playfield.PlayField o-- gui.playfield.ScaleReferenceGraphic : refGraphic
+  gui.playfield.PlayField o-- core.World : w
+  gui.playfield.ScaleReferenceGraphic -up-|> gui.playfield.PlayFieldGraphic
+  input.BinaryEventsReader .up.|> input.ExternalEventsReader
+  input.ConnectionEvent -up-|> input.ExternalEvent
+  input.DTN2Events .up.|> input.EventQueue
+  input.ExternalEvent .up.|> java.io.Serializable
+  input.ExternalEvent .up.|> java.lang.Comparable
+  input.ExternalEventsQueue .up.|> input.EventQueue
+  input.ExternalEventsQueue o-- input.ExternalEventsReader : reader
+  input.MessageBurstGenerator -up-|> input.MessageEventGenerator
+  input.MessageCreateEvent -up-|> input.MessageEvent
+  input.MessageDeleteEvent -up-|> input.MessageEvent
+  input.MessageEvent -up-|> input.ExternalEvent
+  input.MessageEventGenerator .up.|> input.EventQueue
+  input.MessageRelayEvent -up-|> input.MessageEvent
+  input.OneFromEachMessageGenerator -up-|> input.MessageEventGenerator
+  input.OneToEachMessageGenerator -up-|> input.MessageEventGenerator
+  input.ScheduledUpdatesQueue .up.|> input.EventQueue
+  input.ScheduledUpdatesQueue o-- input.ExternalEvent : nextEvent
+  input.StandardEventsReader .up.|> input.ExternalEventsReader
+  input.WKTMapReader -up-|> input.WKTReader
+  interfaces.ConnectivityGrid -up-|> interfaces.ConnectivityOptimizer
+  interfaces.DistanceCapacityInterface -up-|> core.NetworkInterface
+  interfaces.InterferenceLimitedInterface -up-|> core.NetworkInterface
+  interfaces.SimpleBroadcastInterface -up-|> core.NetworkInterface
+  movement.BusControlSystem o-- movement.map.SimMap : simMap
+  movement.BusMovement -up-|> movement.MapRouteMovement
+  movement.BusMovement o-- movement.BusControlSystem : controlSystem
+  movement.BusTravellerMovement .up.|> movement.SwitchableMovement
+  movement.BusTravellerMovement .up.|> movement.TransportMovement
+  movement.BusTravellerMovement -up-|> movement.MapBasedMovement
+  movement.BusTravellerMovement o-- movement.BusTravellerMovement.ContinueBusTripDecider : cbtd
+  movement.BusTravellerMovement o-- movement.BusControlSystem : controlSystem
+  movement.BusTravellerMovement o-- core.Coord : endBusStop
+  movement.BusTravellerMovement o-- core.Coord : latestBusStop
+  movement.BusTravellerMovement o-- core.Coord : location
+  movement.BusTravellerMovement o-- movement.Path : nextPath
+  movement.BusTravellerMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.BusTravellerMovement o-- core.Coord : startBusStop
+  movement.CarMovement .up.|> movement.SwitchableMovement
+  movement.CarMovement .up.|> movement.TransportMovement
+  movement.CarMovement -up-|> movement.MapBasedMovement
+  movement.CarMovement o-- core.Coord : from
+  movement.CarMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.CarMovement o-- core.Coord : to
+  movement.ClusterMovement -up-|> movement.RandomWaypoint
+  movement.EveningActivityMovement .up.|> movement.SwitchableMovement
+  movement.EveningActivityMovement -up-|> movement.MapBasedMovement
+  movement.EveningActivityMovement o-- core.Coord : lastWaypoint
+  movement.EveningActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.EveningActivityMovement o-- movement.EveningActivityControlSystem : scs
+  movement.EveningActivityMovement o-- core.Coord : startAtLocation
+  movement.EveningActivityMovement o-- movement.EveningTrip : trip
+  movement.EveningTrip o-- core.Coord : destination
+  movement.EveningTrip o-- core.Coord : location
+  movement.EveningTrip o-- movement.Path : path
+  movement.ExtendedMovementModel -up-|> movement.MovementModel
+  movement.ExtendedMovementModel o-- movement.SwitchableMovement : currentMovementModel
+  movement.ExternalMovement -up-|> movement.MovementModel
+  movement.ExternalMovement o-- core.Coord : intialLocation
+  movement.ExternalMovement o-- core.Coord : latestLocation
+  movement.ExternalMovement o-- movement.Path : latestPath
+  movement.ExternalPathMovement -up-|> movement.MovementModel
+  movement.GridLocation -up-|> movement.MovementModel
+  movement.GridLocation o-- core.Coord : loc
+  movement.HomeActivityMovement .up.|> movement.SwitchableMovement
+  movement.HomeActivityMovement -up-|> movement.MapBasedMovement
+  movement.HomeActivityMovement o-- core.Coord : homeLocation
+  movement.HomeActivityMovement o-- core.Coord : lastWaypoint
+  movement.HomeActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.LinearFormation -up-|> movement.MovementModel
+  movement.LinearFormation o-- core.Coord : endLoc
+  movement.LinearFormation o-- core.Coord : loc
+  movement.LinearFormation o-- core.Coord : startLoc
+  movement.LinearMovement -up-|> movement.MovementModel
+  movement.LinearMovement o-- core.Coord : endLoc
+  movement.LinearMovement o-- core.Coord : initLoc
+  movement.LinearMovement o-- movement.Path : nextPath
+  movement.LinearMovement o-- core.Coord : startLoc
+  movement.MapBasedMovement .up.|> movement.SwitchableMovement
+  movement.MapBasedMovement -up-|> movement.MovementModel
+  movement.MapBasedMovement o-- movement.map.MapNode : lastMapNode
+  movement.MapBasedMovement o-- movement.map.SimMap : map
+  movement.MapRouteMovement .up.|> movement.SwitchableMovement
+  movement.MapRouteMovement -up-|> movement.MapBasedMovement
+  movement.MapRouteMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.MapRouteMovement o-- movement.map.MapRoute : route
+  movement.ModifiedRandomDirection -up-|> movement.RandomDirection
+  movement.MovementModel o-- core.ModuleCommunicationBus : comBus
+  movement.MovementModel o-- core.DTNHost : host
+  movement.MovementModel o-- util.ActivenessHandler : ah
+  movement.OfficeActivityMovement .up.|> movement.SwitchableMovement
+  movement.OfficeActivityMovement -up-|> movement.MapBasedMovement
+  movement.OfficeActivityMovement o-- core.Coord : deskLocation
+  movement.OfficeActivityMovement o-- core.Coord : lastWaypoint
+  movement.OfficeActivityMovement o-- core.Coord : officeLocation
+  movement.OfficeActivityMovement o-- util.ParetoRNG : paretoRNG
+  movement.OfficeActivityMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.RandomDirection -up-|> movement.MovementModel
+  movement.RandomDirection o-- core.Coord : lastWaypoint
+  movement.RandomWalk .up.|> movement.SwitchableMovement
+  movement.RandomWalk -up-|> movement.MovementModel
+  movement.RandomWalk o-- core.Coord : lastWaypoint
+  movement.RandomWaypoint -up-|> movement.MovementModel
+  movement.RandomWaypoint o-- core.Coord : lastWaypoint
+  movement.ShortestPathMapBasedMovement .up.|> movement.SwitchableMovement
+  movement.ShortestPathMapBasedMovement -up-|> movement.MapBasedMovement
+  movement.ShortestPathMapBasedMovement o-- movement.map.DijkstraPathFinder : pathFinder
+  movement.ShortestPathMapBasedMovement o-- movement.map.PointsOfInterest : pois
+  movement.StationaryMovement -up-|> movement.MovementModel
+  movement.StationaryMovement o-- core.Coord : loc
+  movement.WorkingDayMovement -up-|> movement.ExtendedMovementModel
+  movement.WorkingDayMovement o-- movement.BusTravellerMovement : busTravellerMM
+  movement.WorkingDayMovement o-- movement.CarMovement : carMM
+  movement.WorkingDayMovement o-- movement.EveningActivityMovement : eveningActivityMovement
+  movement.WorkingDayMovement o-- movement.HomeActivityMovement : homeMM
+  movement.WorkingDayMovement o-- movement.TransportMovement : movementUsedForTransfers
+  movement.WorkingDayMovement o-- movement.OfficeActivityMovement : workerMM
+  movement.map.DijkstraPathFinder o-- movement.map.DijkstraPathFinder.DistanceMap : distances
+  movement.map.MapNode .up.|> java.lang.Comparable
+  movement.map.MapNode o-- core.Coord : location
+  movement.map.PointsOfInterest o-- movement.map.SimMap : map
+  movement.map.SimMap .up.|> java.io.Serializable
+  movement.map.SimMap o-- core.Coord : maxBound
+  movement.map.SimMap o-- core.Coord : minBound
+  movement.map.SimMap o-- core.Coord : offset
+  report.AdjacencyGraphvizReport .up.|> core.ConnectionListener
+  report.AdjacencyGraphvizReport -up-|> report.Report
+  report.BufferOccupancyReport .up.|> core.UpdateListener
+  report.BufferOccupancyReport -up-|> report.Report
+  report.ConnectivityDtnsim2Report .up.|> core.ConnectionListener
+  report.ConnectivityDtnsim2Report -up-|> report.Report
+  report.ConnectivityONEReport .up.|> core.ConnectionListener
+  report.ConnectivityONEReport -up-|> report.Report
+  report.ConnectivityReportConnector .up.|> core.ConnectionListener
+  report.ConnectivityReportConnector -up-|> report.Report
+  report.ContactTimesReport .up.|> core.ConnectionListener
+  report.ContactTimesReport -up-|> report.Report
+  report.ContactsDuringAnICTReport .up.|> core.ConnectionListener
+  report.ContactsDuringAnICTReport .up.|> core.UpdateListener
+  report.ContactsDuringAnICTReport -up-|> report.Report
+  report.ContactsPerHourReport .up.|> core.ConnectionListener
+  report.ContactsPerHourReport -up-|> report.Report
+  report.CreatedMessagesReport .up.|> core.MessageListener
+  report.CreatedMessagesReport -up-|> report.Report
+  report.DTN2Reporter .up.|> core.MessageListener
+  report.DTN2Reporter -up-|> report.Report
+  report.DeliveredMessagesReport .up.|> core.MessageListener
+  report.DeliveredMessagesReport -up-|> report.Report
+  report.DistanceDelayReport .up.|> core.MessageListener
+  report.DistanceDelayReport -up-|> report.Report
+  report.EncountersVSUniqueEncountersReport .up.|> core.ConnectionListener
+  report.EncountersVSUniqueEncountersReport .up.|> core.UpdateListener
+  report.EncountersVSUniqueEncountersReport -up-|> report.Report
+  report.EncountersVSUniqueEncountersReport o-- report.TotalEncountersReport : totalEncountersReport
+  report.EncountersVSUniqueEncountersReport o-- report.UniqueEncountersReport : uniqueEncountersReport
+  report.EnergyLevelReport .up.|> core.UpdateListener
+  report.EnergyLevelReport -up-|> report.SnapshotReport
+  report.EventLogReport .up.|> core.ConnectionListener
+  report.EventLogReport .up.|> core.MessageListener
+  report.EventLogReport -up-|> report.Report
+  report.InterContactTimesReport -up-|> report.ContactTimesReport
+  report.JumpSizeDistributionReport -up-|> report.SamplingReport
+  report.LocationSnapshotReport -up-|> report.SnapshotReport
+  report.MessageAvailabilityReport -up-|> report.MessageLocationReport
+  report.MessageCopyCountReport -up-|> report.MessageLocationReport
+  report.MessageDelayReport .up.|> core.MessageListener
+  report.MessageDelayReport -up-|> report.Report
+  report.MessageDeliveryReport .up.|> core.MessageListener
+  report.MessageDeliveryReport -up-|> report.Report
+  report.MessageGraphvizReport .up.|> core.MessageListener
+  report.MessageGraphvizReport -up-|> report.Report
+  report.MessageLocationReport .up.|> core.UpdateListener
+  report.MessageLocationReport -up-|> report.Report
+  report.MessageReport .up.|> core.MessageListener
+  report.MessageReport -up-|> report.Report
+  report.MessageStatsReport .up.|> core.MessageListener
+  report.MessageStatsReport -up-|> report.Report
+  report.MovementListenerTestReport .up.|> core.MovementListener
+  report.MovementListenerTestReport -up-|> report.Report
+  report.MovementNs2Report .up.|> core.MovementListener
+  report.MovementNs2Report -up-|> report.Report
+  report.NodeDensityReport -up-|> report.SamplingReport
+  report.PingAppReporter .up.|> core.ApplicationListener
+  report.PingAppReporter -up-|> report.Report
+  report.RadiusOfGyrationReport -up-|> report.SamplingReport
+  report.SamplingReport .up.|> core.UpdateListener
+  report.SamplingReport -up-|> report.Report
+  report.SnapshotReport .up.|> core.UpdateListener
+  report.SnapshotReport -up-|> report.Report
+  report.TotalContactTimeReport .up.|> core.UpdateListener
+  report.TotalContactTimeReport -up-|> report.ContactTimesReport
+  report.TotalEncountersReport .up.|> core.ConnectionListener
+  report.TotalEncountersReport .up.|> core.UpdateListener
+  report.TotalEncountersReport -up-|> report.Report
+  report.UniqueEncountersReport .up.|> core.ConnectionListener
+  report.UniqueEncountersReport .up.|> core.UpdateListener
+  report.UniqueEncountersReport -up-|> report.Report
+  routing.ActiveRouter -up-|> routing.MessageRouter
+  routing.ActiveRouter o-- routing.util.EnergyModel : energy
+  routing.ActiveRouter o-- routing.util.MessageTransferAcceptPolicy : policy
+  routing.DirectDeliveryRouter -up-|> routing.ActiveRouter
+  routing.EpidemicOracleRouter -up-|> routing.ActiveRouter
+  routing.EpidemicRouter -up-|> routing.ActiveRouter
+  routing.FirstContactRouter -up-|> routing.ActiveRouter
+  routing.LifeRouter -up-|> routing.ActiveRouter
+  routing.MaxPropRouter -up-|> routing.ActiveRouter
+  routing.MaxPropRouter o-- routing.maxprop.MaxPropDijkstra : dijkstra
+  routing.MaxPropRouter o-- core.DTNHost : lastCostFrom
+  routing.MaxPropRouter o-- routing.maxprop.MeetingProbabilitySet : probs
+  routing.MaxPropRouterWithEstimation -up-|> routing.ActiveRouter
+  routing.MaxPropRouterWithEstimation o-- routing.maxprop.MaxPropDijkstra : dijkstra
+  routing.MaxPropRouterWithEstimation o-- core.DTNHost : lastCostFrom
+  routing.MaxPropRouterWithEstimation o-- routing.maxprop.MeetingProbabilitySet : probs
+  routing.MessageRouter o-- core.DTNHost : host
+  routing.PassiveRouter -up-|> routing.MessageRouter
+  routing.ProphetRouter -up-|> routing.ActiveRouter
+  routing.ProphetRouterWithEstimation -up-|> routing.ActiveRouter
+  routing.ProphetV2Router -up-|> routing.ActiveRouter
+  routing.SprayAndWaitRouter -up-|> routing.ActiveRouter
+  routing.WaveRouter -up-|> routing.ActiveRouter
+  routing.maxprop.MaxPropDijkstra o-- routing.maxprop.MaxPropDijkstra.DistanceMap : distancesFromStart
+  routing.schedule.ScheduleDijkstra o-- routing.schedule.ScheduleOracle : oracle
+  routing.schedule.ScheduleDijkstra o-- routing.schedule.ScheduleDijkstra.TimeMap : times
+  routing.schedule.ScheduleEntry .up.|> java.io.Serializable
+  routing.schedule.ScheduleOracle .up.|> java.io.Serializable
+  routing.util.EnergyModel .up.|> core.ModuleCommunicationListener
+  routing.util.EnergyModel o-- core.ModuleCommunicationBus : comBus
+  routing.util.MessageTransferAcceptPolicy o-- core.ArithmeticCondition : hopCountReceivePolicy
+  routing.util.MessageTransferAcceptPolicy o-- core.ArithmeticCondition : hopCountSendPolicy
+  test.AbstractRouterTest -up-|> junit.framework.TestCase
+  test.AbstractRouterTest o-- core.Coord : c0
+  test.AbstractRouterTest o-- core.SimClock : clock
+  test.AbstractRouterTest o-- core.Coord : farAway
+  test.AbstractRouterTest o-- core.DTNHost : h0
+  test.AbstractRouterTest o-- core.DTNHost : h1
+  test.AbstractRouterTest o-- core.DTNHost : h2
+  test.AbstractRouterTest o-- core.DTNHost : h3
+  test.AbstractRouterTest o-- core.DTNHost : h4
+  test.AbstractRouterTest o-- core.DTNHost : h5
+  test.AbstractRouterTest o-- core.DTNHost : h6
+  test.AbstractRouterTest o-- test.MessageChecker : mc
+  test.AbstractRouterTest o-- routing.MessageRouter : routerProto
+  test.AbstractRouterTest o-- test.TestUtils : utils
+  test.ActivenessHandlerTest -up-|> junit.framework.TestCase
+  test.ActivenessHandlerTest o-- util.ActivenessHandler : ah
+  test.ActivenessHandlerTest o-- core.SimClock : clock
+  test.AdjacencyGraphvizReportTest -up-|> junit.framework.TestCase
+  test.AdjacencyGraphvizReportTest o-- report.AdjacencyGraphvizReport : r
+  test.AdjacencyGraphvizReportTest o-- test.TestUtils : utils
+  test.ConnectionTest -up-|> junit.framework.TestCase
+  test.ConnectionTest o-- core.SimClock : clock
+  test.ContactTimesReportTest -up-|> junit.framework.TestCase
+  test.ContactTimesReportTest o-- core.SimClock : clock
+  test.CoordTest -up-|> junit.framework.TestCase
+  test.DTNHostTest -up-|> junit.framework.TestCase
+  test.DijkstraPathFinderTest -up-|> junit.framework.TestCase
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n1
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n2
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n3
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n4
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n5
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n6
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n7
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n8
+  test.DijkstraPathFinderTest o-- movement.map.DijkstraPathFinder : r
+  test.DistanceDelayReportTest -up-|> junit.framework.TestCase
+  test.DistanceDelayReportTest o-- core.SimClock : clock
+  test.DistanceDelayReportTest o-- report.DistanceDelayReport : r
+  test.DistanceDelayReportTest o-- test.TestUtils : utils
+  test.EpidemicRouterTest -up-|> test.AbstractRouterTest
+  test.ExternalEventsQueueTest -up-|> junit.framework.TestCase
+  test.ExternalEventsQueueTest o-- input.ExternalEventsQueue : eeq
+  test.ExternalMovementReaderTest -up-|> junit.framework.TestCase
+  test.ExternalMovementReaderTest o-- input.ExternalMovementReader : r
+  test.ExternalMovementTest -up-|> junit.framework.TestCase
+  test.ExternalMovementTest o-- core.Coord : c0
+  test.ExternalMovementTest o-- core.SimClock : clock
+  test.ExternalMovementTest o-- core.DTNHost : h1
+  test.ExternalMovementTest o-- core.DTNHost : h2
+  test.ExternalMovementTest o-- core.DTNHost : h3
+  test.MapBasedMovementTest -up-|> junit.framework.TestCase
+  test.MapBasedMovementTest o-- core.Coord : c1
+  test.MapBasedMovementTest o-- core.Coord : c2
+  test.MapBasedMovementTest o-- core.Coord : c6
+  test.MapBasedMovementTest o-- movement.map.SimMap : map
+  test.MapBasedMovementTest o-- movement.MapBasedMovement : mbm
+  test.MapBasedMovementTest o-- movement.map.MapNode : n1
+  test.MapBasedMovementTest o-- movement.map.MapNode : n2
+  test.MapBasedMovementTest o-- movement.map.MapNode : n6
+  test.MapBasedMovementTest o-- test.TestSettings : s
+  test.MapNodeTest -up-|> junit.framework.TestCase
+  test.MapNodeTest o-- core.Coord : c1
+  test.MapNodeTest o-- core.Coord : c2
+  test.MapNodeTest o-- core.Coord : c3
+  test.MapNodeTest o-- core.Coord : c4
+  test.MapNodeTest o-- movement.map.SimMap : map
+  test.MapNodeTest o-- movement.map.MapNode : n1
+  test.MapNodeTest o-- movement.map.MapNode : n2
+  test.MapNodeTest o-- movement.map.MapNode : n3
+  test.MapNodeTest o-- movement.map.MapNode : n4
+  test.MaxPropDijkstraTest -up-|> junit.framework.TestCase
+  test.MaxPropDijkstraTest o-- routing.maxprop.MaxPropDijkstra : mpd
+  test.MaxPropRouterTest -up-|> test.AbstractRouterTest
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r1
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r2
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r3
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r4
+  test.MessageChecker .up.|> core.MessageListener
+  test.MessageChecker o-- core.DTNHost : lastFrom
+  test.MessageChecker o-- core.Message : lastMsg
+  test.MessageChecker o-- core.DTNHost : lastTo
+  test.MessageGraphvizReportTest -up-|> junit.framework.TestCase
+  test.MessageGraphvizReportTest o-- report.MessageGraphvizReport : r
+  test.MessageGraphvizReportTest o-- test.TestUtils : utils
+  test.MessageTest -up-|> junit.framework.TestCase
+  test.MessageTest o-- core.DTNHost : from
+  test.MessageTest o-- core.Message : msg
+  test.MessageTest o-- core.SimClock : sc
+  test.MessageTest o-- core.DTNHost : to
+  test.ModuleCommunicationBusTest -up-|> junit.framework.TestCase
+  test.ModuleCommunicationBusTest o-- core.ModuleCommunicationBus : b
+  test.ModuleCommunicationBusTest o-- core.ModuleCommunicationListener : mcl
+  test.PointsOfInterestTest -up-|> junit.framework.TestCase
+  test.PointsOfInterestTest o-- movement.map.PointsOfInterest : pois
+  test.ProphetRouterTest -up-|> test.AbstractRouterTest
+  test.ScheduleDijkstraTest -up-|> junit.framework.TestCase
+  test.ScheduleDijkstraTest o-- routing.schedule.ScheduleDijkstra : d
+  test.ScheduleDijkstraTest o-- routing.schedule.ScheduleOracle : oracle
+  test.ScheduledUpdatesQueueTest -up-|> junit.framework.TestCase
+  test.ScheduledUpdatesQueueTest o-- core.SimClock : sc
+  test.ScheduledUpdatesQueueTest o-- input.ScheduledUpdatesQueue : suq
+  test.SettingsTest -up-|> junit.framework.TestCase
+  test.SettingsTest o-- core.Settings : s
+  test.StationaryMovement -up-|> movement.MovementModel
+  test.StationaryMovement o-- core.Coord : loc
+  test.TestDTNHost -up-|> core.DTNHost
+  test.TestDTNHost o-- core.DTNHost : abortedFrom
+  test.TestDTNHost o-- core.DTNHost : recvFrom
+  test.TestDTNHost o-- core.Message : recvMessage
+  test.TestDTNHost o-- core.DTNHost : transferredFrom
+  test.TestInterface -up-|> core.NetworkInterface
+  test.TestSettings -up-|> core.Settings
+  test.TestUtils o-- core.ModuleCommunicationBus : comBus
+  test.TestUtils o-- routing.MessageRouter : mr
+  test.TestUtils o-- test.TestSettings : settings
+  test.TotalContactTimeReportTest -up-|> junit.framework.TestCase
+  test.TotalContactTimeReportTest o-- core.Coord : away
+  test.TotalContactTimeReportTest o-- core.Coord : c1
+  test.TotalContactTimeReportTest o-- core.Coord : c2
+  test.TotalContactTimeReportTest o-- core.Coord : c3
+  test.TotalContactTimeReportTest o-- core.SimClock : clock
+  test.TotalContactTimeReportTest o-- report.TotalContactTimeReport : ctr
+  test.TotalContactTimeReportTest o-- core.DTNHost : h1
+  test.TotalContactTimeReportTest o-- core.DTNHost : h2
+  test.TotalContactTimeReportTest o-- core.DTNHost : h3
+  test.WKTPointReaderTest -up-|> junit.framework.TestCase
+  test.WKTPointReaderTest o-- input.WKTReader : r
+  test.WKTReaderTest -up-|> junit.framework.TestCase
+  test.WKTReaderTest o-- core.Coord : n10c
+  test.WKTReaderTest o-- core.Coord : n11c
+  test.WKTReaderTest o-- core.Coord : n1c
+  test.WKTReaderTest o-- core.Coord : n2c
+  test.WKTReaderTest o-- core.Coord : n9c
+  test.WKTReaderTest o-- input.WKTMapReader : reader
+  test.WorldTest -up-|> junit.framework.TestCase
+  test.WorldTest o-- core.World : world
+  ui.DTNSimTextUI -up-|> ui.DTNSimUI
+  ui.DTNSimUI o-- core.SimScenario : scen
+  ui.DTNSimUI o-- core.World : world
+  util.ActivenessHandler o-- util.ActivenessHandler.TimeRange : curRange
+  util.Tuple o-- K : key
+  util.Tuple o-- V : value
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

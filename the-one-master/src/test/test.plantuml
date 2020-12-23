@@ -1,0 +1,754 @@
+@startuml
+
+title __TEST's Class Diagram__\n
+
+  namespace test {
+    abstract class test.AbstractRouterTest {
+        {static} # BUFFER_SIZE : int
+        {static} # TRANSMIT_SPEED : int
+        {static} # disconnectLocation : Coord
+        {static} # msgId1 : String
+        {static} # msgId2 : String
+        {static} # msgId3 : String
+        {static} # msgId4 : String
+        {static} # msgId5 : String
+        {static} # ts : TestSettings
+        + toString()
+        # checkCreates()
+        # checkDelivered()
+        # checkTransferStart()
+        # deliverMessage()
+        {static} # disconnect()
+        # setRouterProto()
+        # setUp()
+        # updateAllNodes()
+    }
+  }
+  
+
+  namespace test {
+    class test.ActivenessHandlerTest {
+        - in : double
+        - moreTimes : String
+        - out : double
+        + testIsActive()
+        + testMoreTimes()
+        # setUp()
+    }
+  }
+  
+
+  namespace test {
+    class test.AdjacencyGraphvizReportTest {
+        {static} - NROF : int
+        - outFile : File
+        + setUp()
+        + testDone()
+        - generateConnections()
+    }
+  }
+  
+
+  namespace test {
+    class test.AllTests {
+        {static} + suite()
+    }
+  }
+  
+
+  namespace test {
+    class test.ConnectionTest {
+        {static} + START_TIME : double
+        - c : CBRConnection[]
+        - conCount : int
+        - h : TestDTNHost[]
+        - index : int
+        - m : Message[]
+        - nrof : int
+        - size : int[]
+        - speed : int[]
+        + testAbortTransfer()
+        + testFinalizeTransfer()
+        + testGetOtherNode()
+        + testGetRemainingByteCount()
+        + testGetTotalBytesTransferred()
+        + testGetTransferDoneTime()
+        + testIsInitiator()
+        + testIsMessageTransferred()
+        + testIsReadyForTransfer()
+        + testStartTransfer()
+        # setUp()
+        - con()
+    }
+  }
+  
+
+  namespace test {
+    class test.ContactTimesReportTest {
+        {static} - I_SET_PREFIX : String
+        {static} - SET_PREFIX : String
+        - ctReader : BufferedReader
+        - ictReader : BufferedReader
+        + testGanularity05()
+        + testGranularity10()
+        + testGranularity2()
+        + testReport()
+        - checkValues()
+        - generateConnections()
+        - setUpWithGranularity()
+    }
+  }
+  
+
+  namespace test {
+    class test.CoordTest {
+        + testHashCode()
+    }
+  }
+  
+
+  namespace test {
+    class test.DTNHostTest {
+        {static} + setUpBeforeClass()
+        {static} + tearDownAfterClass()
+        + testNoInterfaces()
+        {static} - makeMessageRouter()
+        {static} - makeMovementModel()
+    }
+  }
+  
+
+  namespace test {
+    class test.DijkstraPathFinderTest {
+        + testPathFinding()
+        # setUp()
+        - checkPath()
+        - createTopology()
+        - getPath()
+        - newNode()
+    }
+  }
+  
+
+  namespace test {
+    class test.DistanceDelayReportTest {
+        ~ outFile : File
+        - ml : Vector<MessageListener>
+        + setUp()
+        + testMessageTransferred()
+    }
+  }
+  
+
+  namespace test {
+    class test.EpidemicRouterTest {
+        {static} - TTL : int
+        + setUp()
+        + testAbortWhenReady()
+        + testDeliverableMessageExchange()
+        + testDifferentOrdering()
+        + testDoubleDelivery()
+        + testFifoSendingQ()
+        + testManyMessages()
+        + testMessageRelayAbort()
+        + testNewMessageToFullBufferWhileTransferring()
+        + testQueueManagement()
+        + testRandomSendingQ()
+        + testResponse()
+        + testRouter()
+        + testTtlExpiry()
+        - newMessage()
+        - runMessageExchange()
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalEventsQueueTest {
+        - msgTimes : double[]
+        - stdinput : String[]
+        - tempFile : File
+        + testBinaryEEQ()
+        + testEEQ()
+        # setUp()
+        - checkEeq()
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalMovementReaderTest {
+        {static} - INPUT : String
+        {static} - coords : Coord[][]
+        {static} - ids : String[]
+        {static} - times : double[]
+        + testReader()
+        # setUp()
+        - checkTuples()
+    }
+  }
+  
+
+  namespace test {
+    class test.ExternalMovementTest {
+        {static} - CLOCK_STEP : double
+        {static} - INPUT : String[]
+        {static} - INPUT_COORDS : Coord[][]
+        {static} - STATIONARY_INPUT : String[]
+        {static} - STATIONARY_INPUT_COORDS : Coord[]
+        + moveAllHosts()
+        + testMovement()
+        + testStationary()
+        # setUpUsing()
+    }
+  }
+  
+
+  namespace test {
+    class test.MapBasedMovementTest {
+        - WKT : String
+        + setUp()
+        + testGetPath()
+        + testHostMoving()
+        + testManyMapTypeNodes()
+        + testMapCache()
+        + testOneMapTypeNode()
+        - setupHost()
+        - setupMapData()
+        - writeToFile()
+        - writeToNewFile()
+    }
+  }
+  
+
+  namespace test {
+    class test.MapNodeTest {
+        + setUp()
+        + testAddNeighbor()
+        + testNodeByCoord()
+    }
+  }
+  
+
+  namespace test {
+    class test.MaxPropDijkstraTest {
+        - DELTA : double
+        - NROF_HOSTS : int
+        - hostsSet : Set<DTNHost>
+        - mapping : Map<Integer, MeetingProbabilitySet>
+        - msets : List<MeetingProbabilitySet>
+        - targets : Set<Integer>
+        + setUp()
+        + testPath()
+        + testProbabilitySumsToOne()
+        + testProbabilityValuesFromThePaper()
+    }
+  }
+  
+
+  namespace test {
+    class test.MaxPropRouterTest {
+        {static} - INVALID_COST : double
+        {static} - NROF_HOSTS : int
+        + testAckedMessageDeleting()
+        + testCostValues()
+        + testMpsTimeStamps()
+        + testRouting()
+        + testThreshold()
+        # setUp()
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageChecker {
+        + TYPE_ABORT : String
+        + TYPE_CREATE : String
+        + TYPE_DELETE : String
+        + TYPE_NONE : String
+        + TYPE_RELAY : String
+        + TYPE_START : String
+        - lastDropped : Boolean
+        - lastFirstDelivery : Boolean
+        - lastType : String
+        - queue : ArrayList<MsgCheckerEvent>
+        + MessageChecker()
+        + getLastDropped()
+        + getLastFirstDelivery()
+        + getLastFrom()
+        + getLastMsg()
+        + getLastTo()
+        + getLastType()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        + next()
+        + reset()
+        + toString()
+        - add()
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageChecker.MsgCheckerEvent {
+        - delivered : Boolean
+        - dropped : Boolean
+        - type : String
+        + MsgCheckerEvent()
+        + toString()
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageGraphvizReportTest {
+        - outFile : File
+        + setUp()
+        + testDone()
+        - generateMessages()
+    }
+  }
+  
+
+  namespace test {
+    class test.MessageTest {
+        + setUp()
+        + testAddProperty()
+        + testGetTtl()
+    }
+  }
+  
+
+  namespace test {
+    class test.ModuleCommunicationBusTest {
+        {static} - TST_VAL : String
+        - notifyKey : String
+        - notifyValue : Object
+        + setUp()
+        + testGetProperty()
+        + testSubscribe()
+        + testUnsubscribe()
+        + testUpdateDouble()
+        + testUpdateProperty()
+    }
+  }
+  
+
+  namespace test {
+    class test.MovementListenerTest {
+        {static} - INITIAL_LOC_CALL_COUNT : int
+        {static} - INITIAL_LOC_TEST_NODE_COUNT : int
+        {static} - INITIAL_LOC_TEST_SETTINGS : String
+        {static} + setUpBeforeClass()
+        {static} + tearDownAfterClass()
+        + testInitialLocation()
+    }
+  }
+  
+
+  namespace test {
+    class test.MovementListenerTest.MovementReport {
+        + initialLocation()
+        + newDestination()
+    }
+  }
+  
+
+  namespace test {
+    class test.PointsOfInterestTest {
+        {static} - COORDS_IN_MAP : Coord[][]
+        {static} - MAP_DATA : String
+        {static} - MAP_DATA2 : String
+        {static} - POINTS_IN_MAP : String[]
+        - nrofMapNodes : int
+        + runTestPoiSelection()
+        + testDifferentRngSeeds()
+        + testFullProb()
+        + testOkNodes()
+        + testPoiSelection()
+        # setUpWith()
+        - fixFile()
+        - isPartOf()
+    }
+  }
+  
+
+  namespace test {
+    class test.ProphetRouterTest {
+        {static} - SECONDS_IN_TIME_UNIT : int
+        + setUp()
+        + testAging()
+        + testRouting()
+        - doRelay()
+    }
+  }
+  
+
+  namespace test {
+    class test.ScheduleDijkstraTest {
+        + testMultipleHops()
+        + testSimplePaths()
+        # setUp()
+        - comparePaths()
+    }
+  }
+  
+
+  namespace test {
+    class test.ScheduledUpdatesQueueTest {
+        {static} - MAX : double
+        + testDuplicateValues()
+        + testInterlavedRequests()
+        + testNegativeAndZeroValues()
+        + testUpdates()
+        # setUp()
+    }
+  }
+  
+
+  namespace test {
+    class test.SettingsTest {
+        {static} - CSV_RS_S : String
+        {static} - CSV_RS_V : int[]
+        {static} - INPUT : String[]
+        {static} - IRS_S : String
+        - RS_S : String
+        {static} - TST : String
+        {static} - TST_RES : String
+        + testContains()
+        + testCreateIntializedObject()
+        + testEmptyRunIndex()
+        + testGetBoolean()
+        + testGetCsvDoubles()
+        + testGetCsvDoublesUnknownAmount()
+        + testGetCsvInts()
+        + testGetCsvIntsUnknownAmount()
+        + testGetCsvSetting()
+        + testGetDouble()
+        + testGetInt()
+        + testGetSetting()
+        + testInvalidRunIndex()
+        + testNoRun()
+        + testRunIndex()
+        + testRunIndexCSVs()
+        + testRunIndexContains()
+        + testValueFillString()
+        # setUp()
+        # tearDown()
+    }
+  }
+  
+
+  namespace test {
+    class test.StationaryMovement {
+        + StationaryMovement()
+        + getInitialLocation()
+        + getPath()
+        + isActive()
+        + nextPathAvailable()
+        + replicate()
+    }
+  }
+  
+
+  namespace test {
+    class test.TestDTNHost {
+        + abortedBytesRemaining : int
+        + abortedId : String
+        + lastUpdate : double
+        + nrofConnect : int
+        + nrofUpdate : int
+        + transferredId : String
+        + TestDTNHost()
+        + connect()
+        + messageAborted()
+        + messageTransferred()
+        + receiveMessage()
+        + update()
+    }
+  }
+  
+
+  namespace test {
+    class test.TestInterface {
+        + TestInterface()
+        + TestInterface()
+        + connect()
+        + createConnection()
+        + getTransmitRange()
+        + getTransmitSpeed()
+        + replicate()
+        + update()
+    }
+  }
+  
+
+  namespace test {
+    class test.TestSettings {
+        + TestSettings()
+        + TestSettings()
+        {static} + init()
+        + putSetting()
+    }
+  }
+  
+
+  namespace test {
+    class test.TestUtils {
+        {static} + IFACE_NS : String
+        - allHosts : List<DTNHost>
+        - conListeners : List<ConnectionListener>
+        - groupId : String
+        - msgListeners : List<MessageListener>
+        + TestUtils()
+        + createHost()
+        + createHost()
+        + createHost()
+        + createHost()
+        + getAllHosts()
+        + setConListeners()
+        + setGroupId()
+        + setMessageRouterProto()
+        + setMsgListeners()
+        + setTransmitRange()
+    }
+  }
+  
+
+  namespace test {
+    class test.TotalContactTimeReportTest {
+        - SET_PREFIX : String
+        - ctReader : BufferedReader
+        - outFile : File
+        + testMultipleTimes()
+        + testOverlappingTimes()
+        + testReport()
+        # setUp()
+        - checkValues()
+        - disc()
+        - done()
+    }
+  }
+  
+
+  namespace test {
+    class test.WKTPointReaderTest {
+        - POINTS : Coord[]
+        - POINT_DATA : String
+        + testReader()
+        # setUp()
+    }
+  }
+  
+
+  namespace test {
+    class test.WKTReaderTest {
+        - ADD_TOPOLOGY : String
+        - ADD_TOPOLOGY2 : String
+        - NROF_TST_NODES : int
+        - TST_TOPOLOGY : String
+        + testFromFile()
+        + testFromString()
+        + testMapOperations()
+        + testMultiLineString()
+        + testMultipleMapFiles()
+        + testReadContents()
+        - basicNodesTests()
+        - setUpWith()
+        - topologyTest()
+    }
+  }
+  
+
+  namespace test {
+    class test.WorldTest {
+        {static} - TIME_DELTA : double
+        - eQueues : List<EventQueue>
+        - simulateConnections : boolean
+        - testHosts : List<TestDTNHost>
+        - upInterval : double
+        - worldSizeX : int
+        - worldSizeY : int
+        + testUpdate()
+        + testUpdateScheduling()
+        # setUp()
+        - assertNrofUpdates()
+    }
+  }
+  
+
+  namespace test {
+    class test.WorldTest.TestScenario {
+        + TestScenario()
+        + getExternalEvents()
+        + getHosts()
+        + getMaxHostRange()
+        + getUpdateInterval()
+        + getUpdateListeners()
+        + getWorldSizeX()
+        + getWorldSizeY()
+        + simulateConnections()
+        # createHosts()
+    }
+  }
+  
+
+  test.AbstractRouterTest -up-|> junit.framework.TestCase
+  test.AbstractRouterTest o-- core.Coord : c0
+  test.AbstractRouterTest o-- core.SimClock : clock
+  test.AbstractRouterTest o-- core.Coord : farAway
+  test.AbstractRouterTest o-- core.DTNHost : h0
+  test.AbstractRouterTest o-- core.DTNHost : h1
+  test.AbstractRouterTest o-- core.DTNHost : h2
+  test.AbstractRouterTest o-- core.DTNHost : h3
+  test.AbstractRouterTest o-- core.DTNHost : h4
+  test.AbstractRouterTest o-- core.DTNHost : h5
+  test.AbstractRouterTest o-- core.DTNHost : h6
+  test.AbstractRouterTest o-- test.MessageChecker : mc
+  test.AbstractRouterTest o-- routing.MessageRouter : routerProto
+  test.AbstractRouterTest o-- test.TestUtils : utils
+  test.ActivenessHandlerTest -up-|> junit.framework.TestCase
+  test.ActivenessHandlerTest o-- util.ActivenessHandler : ah
+  test.ActivenessHandlerTest o-- core.SimClock : clock
+  test.AdjacencyGraphvizReportTest -up-|> junit.framework.TestCase
+  test.AdjacencyGraphvizReportTest o-- report.AdjacencyGraphvizReport : r
+  test.AdjacencyGraphvizReportTest o-- test.TestUtils : utils
+  test.ConnectionTest -up-|> junit.framework.TestCase
+  test.ConnectionTest o-- core.SimClock : clock
+  test.ContactTimesReportTest -up-|> junit.framework.TestCase
+  test.ContactTimesReportTest o-- core.SimClock : clock
+  test.CoordTest -up-|> junit.framework.TestCase
+  test.DTNHostTest -up-|> junit.framework.TestCase
+  test.DijkstraPathFinderTest -up-|> junit.framework.TestCase
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n1
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n2
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n3
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n4
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n5
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n6
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n7
+  test.DijkstraPathFinderTest o-- movement.map.MapNode : n8
+  test.DijkstraPathFinderTest o-- movement.map.DijkstraPathFinder : r
+  test.DistanceDelayReportTest -up-|> junit.framework.TestCase
+  test.DistanceDelayReportTest o-- core.SimClock : clock
+  test.DistanceDelayReportTest o-- report.DistanceDelayReport : r
+  test.DistanceDelayReportTest o-- test.TestUtils : utils
+  test.EpidemicRouterTest -up-|> test.AbstractRouterTest
+  test.ExternalEventsQueueTest -up-|> junit.framework.TestCase
+  test.ExternalEventsQueueTest o-- input.ExternalEventsQueue : eeq
+  test.ExternalMovementReaderTest -up-|> junit.framework.TestCase
+  test.ExternalMovementReaderTest o-- input.ExternalMovementReader : r
+  test.ExternalMovementTest -up-|> junit.framework.TestCase
+  test.ExternalMovementTest o-- core.Coord : c0
+  test.ExternalMovementTest o-- core.SimClock : clock
+  test.ExternalMovementTest o-- core.DTNHost : h1
+  test.ExternalMovementTest o-- core.DTNHost : h2
+  test.ExternalMovementTest o-- core.DTNHost : h3
+  test.MapBasedMovementTest -up-|> junit.framework.TestCase
+  test.MapBasedMovementTest o-- core.Coord : c1
+  test.MapBasedMovementTest o-- core.Coord : c2
+  test.MapBasedMovementTest o-- core.Coord : c6
+  test.MapBasedMovementTest o-- movement.map.SimMap : map
+  test.MapBasedMovementTest o-- movement.MapBasedMovement : mbm
+  test.MapBasedMovementTest o-- movement.map.MapNode : n1
+  test.MapBasedMovementTest o-- movement.map.MapNode : n2
+  test.MapBasedMovementTest o-- movement.map.MapNode : n6
+  test.MapBasedMovementTest o-- test.TestSettings : s
+  test.MapNodeTest -up-|> junit.framework.TestCase
+  test.MapNodeTest o-- core.Coord : c1
+  test.MapNodeTest o-- core.Coord : c2
+  test.MapNodeTest o-- core.Coord : c3
+  test.MapNodeTest o-- core.Coord : c4
+  test.MapNodeTest o-- movement.map.SimMap : map
+  test.MapNodeTest o-- movement.map.MapNode : n1
+  test.MapNodeTest o-- movement.map.MapNode : n2
+  test.MapNodeTest o-- movement.map.MapNode : n3
+  test.MapNodeTest o-- movement.map.MapNode : n4
+  test.MaxPropDijkstraTest -up-|> junit.framework.TestCase
+  test.MaxPropDijkstraTest o-- routing.maxprop.MaxPropDijkstra : mpd
+  test.MaxPropRouterTest -up-|> test.AbstractRouterTest
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r1
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r2
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r3
+  test.MaxPropRouterTest o-- routing.MaxPropRouter : r4
+  test.MessageChecker .up.|> core.MessageListener
+  test.MessageChecker o-- core.DTNHost : lastFrom
+  test.MessageChecker o-- core.Message : lastMsg
+  test.MessageChecker o-- core.DTNHost : lastTo
+  test.MessageChecker +-down- test.MessageChecker.MsgCheckerEvent
+  test.MessageChecker.MsgCheckerEvent o-- core.DTNHost : from
+  test.MessageChecker.MsgCheckerEvent o-- core.Message : msg
+  test.MessageChecker.MsgCheckerEvent o-- core.DTNHost : to
+  test.MessageGraphvizReportTest -up-|> junit.framework.TestCase
+  test.MessageGraphvizReportTest o-- report.MessageGraphvizReport : r
+  test.MessageGraphvizReportTest o-- test.TestUtils : utils
+  test.MessageTest -up-|> junit.framework.TestCase
+  test.MessageTest o-- core.DTNHost : from
+  test.MessageTest o-- core.Message : msg
+  test.MessageTest o-- core.SimClock : sc
+  test.MessageTest o-- core.DTNHost : to
+  test.ModuleCommunicationBusTest -up-|> junit.framework.TestCase
+  test.ModuleCommunicationBusTest o-- core.ModuleCommunicationBus : b
+  test.ModuleCommunicationBusTest o-- core.ModuleCommunicationListener : mcl
+  test.MovementListenerTest +-down- test.MovementListenerTest.MovementReport
+  test.MovementListenerTest.MovementReport .up.|> core.MovementListener
+  test.MovementListenerTest.MovementReport -up-|> report.Report
+  test.PointsOfInterestTest -up-|> junit.framework.TestCase
+  test.PointsOfInterestTest o-- movement.map.PointsOfInterest : pois
+  test.ProphetRouterTest -up-|> test.AbstractRouterTest
+  test.ScheduleDijkstraTest -up-|> junit.framework.TestCase
+  test.ScheduleDijkstraTest o-- routing.schedule.ScheduleDijkstra : d
+  test.ScheduleDijkstraTest o-- routing.schedule.ScheduleOracle : oracle
+  test.ScheduledUpdatesQueueTest -up-|> junit.framework.TestCase
+  test.ScheduledUpdatesQueueTest o-- core.SimClock : sc
+  test.ScheduledUpdatesQueueTest o-- input.ScheduledUpdatesQueue : suq
+  test.SettingsTest -up-|> junit.framework.TestCase
+  test.SettingsTest o-- core.Settings : s
+  test.StationaryMovement -up-|> movement.MovementModel
+  test.StationaryMovement o-- core.Coord : loc
+  test.TestDTNHost -up-|> core.DTNHost
+  test.TestDTNHost o-- core.DTNHost : abortedFrom
+  test.TestDTNHost o-- core.DTNHost : recvFrom
+  test.TestDTNHost o-- core.Message : recvMessage
+  test.TestDTNHost o-- core.DTNHost : transferredFrom
+  test.TestInterface -up-|> core.NetworkInterface
+  test.TestSettings -up-|> core.Settings
+  test.TestUtils o-- core.ModuleCommunicationBus : comBus
+  test.TestUtils o-- routing.MessageRouter : mr
+  test.TestUtils o-- test.TestSettings : settings
+  test.TotalContactTimeReportTest -up-|> junit.framework.TestCase
+  test.TotalContactTimeReportTest o-- core.Coord : away
+  test.TotalContactTimeReportTest o-- core.Coord : c1
+  test.TotalContactTimeReportTest o-- core.Coord : c2
+  test.TotalContactTimeReportTest o-- core.Coord : c3
+  test.TotalContactTimeReportTest o-- core.SimClock : clock
+  test.TotalContactTimeReportTest o-- report.TotalContactTimeReport : ctr
+  test.TotalContactTimeReportTest o-- core.DTNHost : h1
+  test.TotalContactTimeReportTest o-- core.DTNHost : h2
+  test.TotalContactTimeReportTest o-- core.DTNHost : h3
+  test.WKTPointReaderTest -up-|> junit.framework.TestCase
+  test.WKTPointReaderTest o-- input.WKTReader : r
+  test.WKTReaderTest -up-|> junit.framework.TestCase
+  test.WKTReaderTest o-- core.Coord : n10c
+  test.WKTReaderTest o-- core.Coord : n11c
+  test.WKTReaderTest o-- core.Coord : n1c
+  test.WKTReaderTest o-- core.Coord : n2c
+  test.WKTReaderTest o-- core.Coord : n9c
+  test.WKTReaderTest o-- input.WKTMapReader : reader
+  test.WorldTest -up-|> junit.framework.TestCase
+  test.WorldTest o-- core.World : world
+  test.WorldTest +-down- test.WorldTest.TestScenario
+  test.WorldTest.TestScenario -up-|> core.SimScenario
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

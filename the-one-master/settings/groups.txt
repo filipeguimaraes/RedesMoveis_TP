@@ -22,10 +22,11 @@
 # Propriedades para todos os Grupos #
 #####################################
 Group.movementModel = ShortestPathMapBasedMovement
-Group.router = EpidemicRouter
+#Group.router = EpidemicRouter
+Group.router = EpidemicOracleRouter
 #Group.router = ProphetRouter
 #Group.router = SprayAndWaitRouter
-Group.bufferSize = 500M
+Group.bufferSize = 100M
 Group.waitTime = 0, 120
 # All nodes have the bluetooth interface
 Group.nrofInterfaces = 1
@@ -34,7 +35,7 @@ Group.interface1 = btInterface
 #Group.speed = 0.5, 1.5
 Group.speed = 0.0, 0.0
 # Message TTL of 300 minutes (5 hours)
-Group.msgTtl = 60
+Group.msgTtl = 300
 
 
 
@@ -51,10 +52,11 @@ Group2.nrofHosts = 5
 Group2.groupID = P
 
 ####################
-# Grupo 2 - Carros #
+# Grupo 3 - Carros #
 ####################
-# group2 specific settings
-Group3.nrofHosts = 150
+# group 3 specific settings
+Group3.movementModel = CarMovement
+Group3.nrofHosts = 130
 Group3.groupID = C
 # cars can drive only on roads
 Group3.okMaps = 1

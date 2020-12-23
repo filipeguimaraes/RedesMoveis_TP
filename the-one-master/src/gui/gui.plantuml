@@ -1,0 +1,341 @@
+@startuml
+
+title __GUI's Class Diagram__\n
+
+  namespace gui {
+    class gui.DTNSimGUI {
+        + centerViewAt()
+        + closeSim()
+        + getCenterViewCoord()
+        + getInfoPanel()
+        + getParentFrame()
+        + setFocus()
+        + setPaused()
+        + showPath()
+        + update()
+        # runSim()
+        - initGUI()
+        - processAssertionError()
+        - startGUI()
+        - updateView()
+        - wait()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.DTNSimGUI.PlayfieldMouseHandler {
+        + mouseClicked()
+        + mouseWheelMoved()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogControl {
+        - pause : JCheckBox
+        - show : JCheckBox
+        + EventLogControl()
+        + pauseOnEvent()
+        + setPauseOnEvent()
+        + setShowEvent()
+        + showEvent()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogControlPanel {
+        {static} - PADDING : int
+        {static} - PAUSE_TEXT : String
+        {static} - SHOW_TEXT : String
+        {static} - TITLE_TEXT : String
+        - c : GridBagConstraints
+        - headingFont : Font
+        - layout : GridBagLayout
+        - logControls : Vector<EventLogControl>
+        - pauseAllCheck : JCheckBox
+        - showAllCheck : JCheckBox
+        - smallFont : Font
+        + EventLogControlPanel()
+        + actionPerformed()
+        + addControl()
+        + addControl()
+        + addHeading()
+        - addCheckBox()
+        - addLabel()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.EventLogPanel {
+        {static} + DEFAULT_MAX_NROF_EVENTS : int
+        {static} + EL_PANEL_NS : String
+        {static} + EVENTS_RE_S : String
+        {static} + LOG_UP_INTERVAL : int
+        {static} + NROF_EVENTS_S : String
+        {static} - ENTRY_FORMAT : String
+        {static} - FONT_SIZE : int
+        {static} - FONT_TYPE : String
+        {static} - HIGHLIGHT_BG_COLOR : Color
+        {static} - HOST_DELIM : String
+        {static} - HOST_PROP : String
+        {static} - LOG_BUTTON_BG : Color
+        {static} - MSG_PROP : String
+        {static} - PANEL_TITLE : String
+        - eventPanes : Vector<JPanel>
+        - font : Font
+        - layout : GridLayout
+        - maxNrofEvents : int
+        - regExp : String
+        + EventLogPanel()
+        + actionPerformed()
+        + getControls()
+        + hostsConnected()
+        + hostsDisconnected()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        + toString()
+        - addEvent()
+        - addInfoButton()
+        - createControls()
+        - processEvent()
+        - updateLogView()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.GUIControls {
+        {static} + FFW_SPEED_INDEX : int
+        {static} + INITIAL_SPEED_SELECTION : int
+        {static} + UP_SPEEDS : String[]
+        {static} + ZOOM_MAX : double
+        {static} + ZOOM_MIN : double
+        {static} - EPS_AVG_TIME : int
+        {static} - ICON_FFW : String
+        {static} - ICON_PAUSE : String
+        {static} - ICON_PLAY : String
+        {static} - ICON_STEP : String
+        {static} - ICON_ZOOM : String
+        {static} - PATH_GRAPHICS : String
+        {static} - SCREENSHOT_FILE : String
+        {static} - SCREENSHOT_FILE_TYPE : String
+        {static} - TEXT_FFW : String
+        {static} - TEXT_PAUSE : String
+        {static} - TEXT_PLAY : String
+        {static} - TEXT_PLAY_UNTIL : String
+        {static} - TEXT_SCREEN_SHOT : String
+        {static} - TEXT_SEPS : String
+        {static} - TEXT_SIMTIME : String
+        {static} - TEXT_STEP : String
+        {static} - TEXT_UP_CHOOSER : String
+        - ffwButton : JButton
+        - guiUpdateChooser : JComboBox<String>
+        - guiUpdateInterval : double
+        - isFfw : boolean
+        - lastSimTime : double
+        - lastUpdate : long
+        - oldSpeedIndex : int
+        - paused : boolean
+        - playButton : JButton
+        - playUntilButton : JButton
+        - playUntilTime : double
+        - screenShotButton : JButton
+        - sepsField : JLabel
+        - simTimeField : JTextField
+        - step : boolean
+        - stepButton : JButton
+        - useHourDisplay : boolean
+        - zoomSelector : JSpinner
+        + GUIControls()
+        + actionPerformed()
+        + changeZoom()
+        + getUpdateInterval()
+        + isFfw()
+        + isPaused()
+        + setPaused()
+        + setSimTime()
+        + stateChanged()
+        - addButton()
+        - createImageIcon()
+        - initPanel()
+        - setPlayUntil()
+        - switchFfw()
+        - takeScreenShot()
+        - updateUpdateInterval()
+        - updateZoomScale()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.InfoPanel {
+        - info : JLabel
+        - infoButton : JButton
+        - msgChooser : JComboBox
+        - routingInfoButton : JButton
+        + InfoPanel()
+        + actionPerformed()
+        + showInfo()
+        + showInfo()
+        - reset()
+        - setMessageInfo()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.MainWindow {
+        {static} + GUI_NS : String
+        {static} + GUI_WIN_NS : String
+        {static} + WINDOW_TITLE : String
+        {static} + WIN_DEFAULT_HEIGHT : int
+        {static} + WIN_DEFAULT_WIDTH : int
+        {static} + WIN_HEIGHT_S : String
+        {static} + WIN_WIDTH_S : String
+        {static} - SPLIT_PANE_LOG_WEIGHT : double
+        - playFieldScroll : JScrollPane
+        + MainWindow()
+        + getPlayFieldScroll()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.NodeChooser {
+        {static} + MAX_NODE_COUNT : int
+        {static} + NODE_MESSAGE_FILTERS_S : String
+        {static} - AUTO_REFRESH_DELAY : int
+        {static} - HOST_KEY : String
+        - allNodes : List<DTNHost>
+        - chooserPanel : JPanel
+        - filters : Vector<NodeFilter>
+        - groupChooser : JComboBox<String>
+        - nodesPanel : JPanel
+        - refreshTimer : Timer
+        - shownNodes : List<DTNHost>
+        + NodeChooser()
+        + actionPerformed()
+        + addFilter()
+        + clearFilters()
+        - init()
+        - setNodes()
+        - updateList()
+        - updateShownNodes()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.RoutingInfoWindow {
+        {static} - AUTO_REFRESH_DELAY : int
+        - autoRefresh : JCheckBox
+        - refreshButton : JButton
+        - refreshTimer : Timer
+        - tree : JTree
+        - treePane : JScrollPane
+        + RoutingInfoWindow()
+        + actionPerformed()
+        - addChildren()
+        - updateTree()
+    }
+  }
+  
+
+  namespace gui {
+    class gui.SimMenuBar {
+        {static} + ABOUT_TEXT : String
+        {static} + ABOUT_TITLE : String
+        {static} + FOCUS_ON_CLICK_S : String
+        {static} + SHOW_BUFFER_S : String
+        {static} + SHOW_CONNECTIONS_S : String
+        {static} + SHOW_NODE_NAMESTR_S : String
+        {static} + SHOW_RADIO_COVERAGES_S : String
+        {static} + UNDERLAY_NS : String
+        - about : JMenuItem
+        - addNodeMessageFilter : JMenuItem
+        - autoClearOverlay : JCheckBoxMenuItem
+        - clearNodeFilters : JMenuItem
+        - clearOverlay : JMenuItem
+        - enableBgImage : JCheckBoxMenuItem
+        - enableMapGraphic : JCheckBoxMenuItem
+        - focusOnClick : JCheckBoxMenuItem
+        - showBuffer : JCheckBoxMenuItem
+        - showNodeConnections : JCheckBoxMenuItem
+        - showNodeCoverage : JCheckBoxMenuItem
+        - showNodeName : JCheckBoxMenuItem
+        + SimMenuBar()
+        + actionPerformed()
+        - createCheckItem()
+        - createMenuItem()
+        - getFilterString()
+        - init()
+        - toggleUnderlayImage()
+        - updatePlayfieldSettings()
+        - warn()
+    }
+  }
+  
+
+  gui.DTNSimGUI -up-|> ui.DTNSimUI
+  gui.DTNSimGUI o-- gui.EventLogPanel : eventLogPanel
+  gui.DTNSimGUI o-- gui.playfield.PlayField : field
+  gui.DTNSimGUI o-- gui.GUIControls : guiControls
+  gui.DTNSimGUI o-- gui.InfoPanel : infoPanel
+  gui.DTNSimGUI o-- gui.MainWindow : main
+  gui.DTNSimGUI +-down- gui.DTNSimGUI.PlayfieldMouseHandler
+  gui.DTNSimGUI.PlayfieldMouseHandler .up.|> java.awt.event.MouseWheelListener
+  gui.DTNSimGUI.PlayfieldMouseHandler -up-|> java.awt.event.MouseAdapter
+  gui.EventLogControlPanel .up.|> java.awt.event.ActionListener
+  gui.EventLogControlPanel -up-|> javax.swing.JPanel
+  gui.EventLogPanel .up.|> core.ConnectionListener
+  gui.EventLogPanel .up.|> core.MessageListener
+  gui.EventLogPanel .up.|> java.awt.event.ActionListener
+  gui.EventLogPanel -up-|> javax.swing.JPanel
+  gui.EventLogPanel o-- gui.EventLogControl : conDownCheck
+  gui.EventLogPanel o-- gui.EventLogControl : conUpCheck
+  gui.EventLogPanel o-- gui.EventLogControlPanel : controls
+  gui.EventLogPanel o-- gui.DTNSimGUI : gui
+  gui.EventLogPanel o-- gui.EventLogControl : msgAbortCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgCreateCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgDeliveredCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgDropCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgRelayCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgRemoveCheck
+  gui.EventLogPanel o-- gui.EventLogControl : msgTransferStartCheck
+  gui.GUIControls .up.|> java.awt.event.ActionListener
+  gui.GUIControls .up.|> javax.swing.event.ChangeListener
+  gui.GUIControls -up-|> javax.swing.JPanel
+  gui.GUIControls o-- gui.DTNSimGUI : gui
+  gui.GUIControls o-- gui.playfield.PlayField : pf
+  gui.InfoPanel .up.|> java.awt.event.ActionListener
+  gui.InfoPanel -up-|> javax.swing.JPanel
+  gui.InfoPanel o-- gui.DTNSimGUI : gui
+  gui.InfoPanel o-- core.DTNHost : selectedHost
+  gui.InfoPanel o-- core.Message : selectedMessage
+  gui.MainWindow -up-|> javax.swing.JFrame
+  gui.NodeChooser .up.|> java.awt.event.ActionListener
+  gui.NodeChooser -up-|> javax.swing.JPanel
+  gui.NodeChooser o-- gui.DTNSimGUI : gui
+  gui.RoutingInfoWindow .up.|> java.awt.event.ActionListener
+  gui.RoutingInfoWindow -up-|> javax.swing.JFrame
+  gui.RoutingInfoWindow o-- core.DTNHost : host
+  gui.SimMenuBar .up.|> java.awt.event.ActionListener
+  gui.SimMenuBar -up-|> javax.swing.JMenuBar
+  gui.SimMenuBar o-- gui.NodeChooser : chooser
+  gui.SimMenuBar o-- gui.playfield.PlayField : field
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

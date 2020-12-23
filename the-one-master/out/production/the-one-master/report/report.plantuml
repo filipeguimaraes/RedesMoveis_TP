@@ -1,0 +1,713 @@
+@startuml
+
+title __REPORT's Class Diagram__\n
+
+  namespace report {
+    class report.AdjacencyGraphvizReport {
+        {static} + GRAPH_NAME : String
+        - HOST_DELIM : String
+        - allHosts : Collection<DTNHost>
+        - cons : HashMap<String, ConnectionInfo>
+        + AdjacencyGraphvizReport()
+        + done()
+        + hostsConnected()
+        + hostsDisconnected()
+        + setAllHosts()
+        # init()
+    }
+  }
+  
+
+  namespace report {
+    class report.AdjacencyGraphvizReport.ConnectionInfo {
+        - nrofConnections : int
+        + ConnectionInfo()
+        + compareTo()
+        + equals()
+        + hashCode()
+        + toString()
+    }
+  }
+  
+
+  namespace report {
+    class report.BufferOccupancyReport {
+        {static} + BUFFER_REPORT_INTERVAL : String
+        {static} + DEFAULT_BUFFER_REPORT_INTERVAL : int
+        - interval : int
+        - lastRecord : double
+        + BufferOccupancyReport()
+        + updated()
+        - printLine()
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityDtnsim2Report {
+        + ConnectivityDtnsim2Report()
+        + hostsConnected()
+        + hostsDisconnected()
+        - connectionString()
+        - createTimeStamp()
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityONEReport {
+        + ConnectivityONEReport()
+        + hostsConnected()
+        + hostsDisconnected()
+        - connectionString()
+        - createTimeStamp()
+    }
+  }
+  
+
+  namespace report {
+    class report.ConnectivityReportConnector {
+        {static} + FILE_OUTPUT_S : String
+        {static} + SERVER_ADDRESS_S : String
+        {static} + SERVER_PORT_S : String
+        # socket : Socket
+        # socketWriter : PrintWriter
+        # writeToFile : boolean
+        + ConnectivityReportConnector()
+        + hostsConnected()
+        + hostsDisconnected()
+        # write()
+        - connectionString()
+        - createTimeStamp()
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactTimesReport {
+        {static} + GRANULARITY : String
+        # connections : HashMap<ConnectionInfo, ConnectionInfo>
+        # granularity : double
+        - nrofContacts : Vector<Integer>
+        + ContactTimesReport()
+        + done()
+        + hostsConnected()
+        + hostsDisconnected()
+        # addConnection()
+        # increaseTimeCount()
+        # init()
+        # removeConnection()
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactTimesReport.ConnectionInfo {
+        - endTime : double
+        - startTime : double
+        + ConnectionInfo()
+        + connectionEnd()
+        + equals()
+        + getConnectionTime()
+        + hashCode()
+        + toString()
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactsDuringAnICTReport {
+        - areDisconnected : boolean[][]
+        - contactCount : int[][]
+        - contactsDuringIC : LinkedList<Integer>
+        - updateHasBeenCalled : boolean
+        + ContactsDuringAnICTReport()
+        + done()
+        + hostsConnected()
+        + hostsDisconnected()
+        + updated()
+        # init()
+        - incContactForAllDisconnectedNodes()
+    }
+  }
+  
+
+  namespace report {
+    class report.ContactsPerHourReport {
+        - contactCounts : LinkedList<Integer>
+        - currentHour : int
+        - currentHourCount : int
+        + ContactsPerHourReport()
+        + done()
+        + hostsConnected()
+        + hostsDisconnected()
+        + init()
+    }
+  }
+  
+
+  namespace report {
+    class report.CreatedMessagesReport {
+        {static} + HEADER : String
+        + CreatedMessagesReport()
+        + done()
+        + init()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+    }
+  }
+  
+
+  namespace report {
+    class report.DTN2Reporter {
+        + DTN2Reporter()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+    }
+  }
+  
+
+  namespace report {
+    class report.DeliveredMessagesReport {
+        {static} + HEADER : String
+        + DeliveredMessagesReport()
+        + done()
+        + init()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        - getPathString()
+    }
+  }
+  
+
+  namespace report {
+    class report.DistanceDelayReport {
+        {static} + SYNTAX : String
+        - creationInfos : HashMap<String, InfoTuple>
+        + DistanceDelayReport()
+        + done()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        # init()
+        - printHeader()
+        - report()
+    }
+  }
+  
+
+  namespace report {
+    class report.DistanceDelayReport.InfoTuple {
+        - time : double
+        + InfoTuple()
+        + getLoc1()
+        + getLoc2()
+        + getTime()
+    }
+  }
+  
+
+  namespace report {
+    class report.EncountersVSUniqueEncountersReport {
+        + EncountersVSUniqueEncountersReport()
+        + done()
+        + hostsConnected()
+        + hostsDisconnected()
+        + updated()
+    }
+  }
+  
+
+  namespace report {
+    class report.EnergyLevelReport {
+        # writeSnapshot()
+    }
+  }
+  
+
+  namespace report {
+    class report.EventLogReport {
+        {static} + MESSAGE_TRANS_DELIVERED : String
+        {static} + MESSAGE_TRANS_DELIVERED_AGAIN : String
+        {static} + MESSAGE_TRANS_RELAYED : String
+        + hostsConnected()
+        + hostsDisconnected()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        - processEvent()
+    }
+  }
+  
+
+  namespace report {
+    class report.InterContactTimesReport {
+        + hostsConnected()
+        + hostsDisconnected()
+    }
+  }
+  
+
+  namespace report {
+    class report.JumpSizeDistributionReport {
+        {static} + BUCKET_COUNT_SETTING : String
+        {static} + RAW_OUTPUT_SETTING : String
+        - bucketCount : int
+        - outputRawData : boolean
+        - previousLocations : Coord[]
+        - sampleCounts : int[]
+        - samples : double[][]
+        + JumpSizeDistributionReport()
+        + done()
+        # sample()
+        {static} - maxJump()
+    }
+  }
+  
+
+  namespace report {
+    class report.LocationSnapshotReport {
+        # writeSnapshot()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageAvailabilityReport {
+        {static} + NROF_HOSTS_S : String
+        - nrofHosts : int
+        - rng : Random
+        - trackedHosts : Set<DTNHost>
+        + MessageAvailabilityReport()
+        # createSnapshot()
+        - selectTrackedHosts()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageCopyCountReport {
+        # createSnapshot()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageDelayReport {
+        {static} + HEADER : String
+        - delays : List<Double>
+        - nrofCreated : int
+        + MessageDelayReport()
+        + done()
+        + init()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageDeliveryReport {
+        {static} + HEADER : String
+        - created : int
+        - delivered : int
+        + MessageDeliveryReport()
+        + done()
+        + init()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        - reportValues()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageGraphvizReport {
+        {static} + GRAPH_NAME : String
+        - deliveredMessages : Vector<Message>
+        + MessageGraphvizReport()
+        + done()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        # init()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageLocationReport {
+        {static} + GRANULARITY : String
+        {static} + REPORTED_MESSAGES : String
+        # granularity : int
+        # lastUpdate : double
+        # reportedMessages : HashSet<String>
+        + MessageLocationReport()
+        + updated()
+        # createSnapshot()
+        # isTracked()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageReport {
+        {static} + HEADER : String
+        + MessageReport()
+        + done()
+        + init()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+    }
+  }
+  
+
+  namespace report {
+    class report.MessageStatsReport {
+        - creationTimes : Map<String, Double>
+        - hopCounts : List<Integer>
+        - latencies : List<Double>
+        - msgBufferTime : List<Double>
+        - nrofAborted : int
+        - nrofCreated : int
+        - nrofDelivered : int
+        - nrofDropped : int
+        - nrofRelayed : int
+        - nrofRemoved : int
+        - nrofResponseDelivered : int
+        - nrofResponseReqCreated : int
+        - nrofStarted : int
+        - rtt : List<Double>
+        + MessageStatsReport()
+        + done()
+        + messageDeleted()
+        + messageTransferAborted()
+        + messageTransferStarted()
+        + messageTransferred()
+        + newMessage()
+        # init()
+    }
+  }
+  
+
+  namespace report {
+    class report.MovementListenerTestReport {
+        {static} - DELEGATE : MovementListener
+        + initialLocation()
+        + newDestination()
+        {static} + setDelegate()
+    }
+  }
+  
+
+  namespace report {
+    class report.MovementNs2Report {
+        {static} + COORD_FORMAT : String
+        {static} + DEF_NODE_ARRAY : String
+        {static} + DEF_NS_CMD : String
+        {static} + EPSILON : double
+        {static} + NODE_ARR_S : String
+        {static} + NS_CMD_S : String
+        - nodeArray : String
+        - nsCmd : String
+        + MovementNs2Report()
+        + initialLocation()
+        + newDestination()
+        - fix()
+    }
+  }
+  
+
+  namespace report {
+    class report.NodeDensityReport {
+        {static} + DEFAULT_GNUPLOT : boolean
+        {static} + DEFAULT_GNUPLOT_FILE_EXTENSION : String
+        {static} + DEFAULT_GNUPLOT_TERMINAL : String
+        {static} + DEFAULT_ONLY_AVERAGE : boolean
+        {static} + DEFAULT_X_COUNT : int
+        {static} + DEFAULT_Y_COUNT : int
+        {static} + GNUPLOT_FILE_EXTENSION_SETTING : String
+        {static} + GNUPLOT_SETTING : String
+        {static} + GNUPLOT_TERMINAL_SETTING : String
+        {static} + ONLY_AVERAGE_SETTING : String
+        {static} + X_COUNT_SETTING : String
+        {static} + Y_COUNT_SETTING : String
+        - divisionHeight : double
+        - divisionWidth : double
+        - gnuplot : boolean
+        - gnuplotFileExtension : String
+        - gnuplotTerminal : String
+        - horizontalCount : int
+        - onlyAverage : boolean
+        - runName : String
+        - samples : List<int[][]>
+        - verticalCount : int
+        + NodeDensityReport()
+        + done()
+        # sample()
+        {static} - getAverageDensities()
+        - outputGnuplotPrefix()
+        - outputGnuplotSuffix()
+    }
+  }
+  
+
+  namespace report {
+    class report.PingAppReporter {
+        - pingsReceived : int
+        - pingsSent : int
+        - pongsReceived : int
+        - pongsSent : int
+        + done()
+        + gotEvent()
+    }
+  }
+  
+
+  namespace report {
+    class report.RadiusOfGyrationReport {
+        - nodeNames : String[]
+        - sampleCounts : int[]
+        - samples : double[][][]
+        + RadiusOfGyrationReport()
+        + done()
+        # sample()
+        {static} - distance()
+        {static} - geometricCenter()
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.Report {
+        {static} + DEF_PRECISION : int
+        {static} + INTERVALLED_FORMAT : String
+        {static} + INTERVAL_SETTING : String
+        {static} + NAN : String
+        {static} + OUTPUT_SETTING : String
+        {static} + OUT_SUFFIX : String
+        {static} + PRECISION_SETTING : String
+        {static} + REPORTDIR_SETTING : String
+        {static} + REPORT_NS : String
+        {static} + WARMUP_S : String
+        # out : PrintWriter
+        # warmupIDs : Set<String>
+        # warmupTime : int
+        - lastOutputSuffix : int
+        - lastReportTime : double
+        - outFileName : String
+        - outputInterval : double
+        - precision : int
+        - prefix : String
+        - scenarioName : String
+        + Report()
+        + done()
+        + getAverage()
+        + getIntAverage()
+        + getIntMedian()
+        + getMedian()
+        + getVariance()
+        # addWarmupID()
+        # format()
+        # getScenarioName()
+        # getSettings()
+        # getSimTime()
+        # init()
+        # isWarmup()
+        # isWarmupID()
+        # newEvent()
+        # removeWarmupID()
+        # setPrefix()
+        # write()
+        - checkDirExistence()
+        - createDirs()
+        - createOutput()
+        - createSuffixedOutput()
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.SamplingReport {
+        {static} + DEFAULT_SAMPLE_INTERVAL : double
+        {static} + SAMPLE_INTERVAL_SETTING : String
+        # interval : double
+        - lastRecord : double
+        + updated()
+        # SamplingReport()
+        {abstract} # sample()
+    }
+  }
+  
+
+  namespace report {
+    abstract class report.SnapshotReport {
+        {static} + GRANULARITY : String
+        {static} + REPORTED_NODES : String
+        # granularity : int
+        # lastUpdate : double
+        # reportedNodes : HashSet<Integer>
+        + SnapshotReport()
+        + updated()
+        # createSnapshot()
+        {abstract} # writeSnapshot()
+    }
+  }
+  
+
+  namespace report {
+    class report.TotalContactTimeReport {
+        {static} + HEADER : String
+        - lastReportedTime : double
+        - lastWrite : double
+        - oldContactTimes : double
+        + hostsDisconnected()
+        + init()
+        + updated()
+    }
+  }
+  
+
+  namespace report {
+    class report.TotalEncountersReport {
+        - encounters : int[]
+        + TotalEncountersReport()
+        + done()
+        + getEncounters()
+        + hostsConnected()
+        + hostsDisconnected()
+        + setEncounters()
+        + updated()
+    }
+  }
+  
+
+  namespace report {
+    class report.UniqueEncountersReport {
+        - nodeRelationships : int[][]
+        + UniqueEncountersReport()
+        + done()
+        + getNodeRelationships()
+        + hostsConnected()
+        + hostsDisconnected()
+        + setNodeRelationships()
+        + updated()
+    }
+  }
+  
+
+  report.AdjacencyGraphvizReport .up.|> core.ConnectionListener
+  report.AdjacencyGraphvizReport -up-|> report.Report
+  report.AdjacencyGraphvizReport +-down- report.AdjacencyGraphvizReport.ConnectionInfo
+  report.AdjacencyGraphvizReport.ConnectionInfo o-- core.DTNHost : h1
+  report.AdjacencyGraphvizReport.ConnectionInfo o-- core.DTNHost : h2
+  report.BufferOccupancyReport .up.|> core.UpdateListener
+  report.BufferOccupancyReport -up-|> report.Report
+  report.ConnectivityDtnsim2Report .up.|> core.ConnectionListener
+  report.ConnectivityDtnsim2Report -up-|> report.Report
+  report.ConnectivityONEReport .up.|> core.ConnectionListener
+  report.ConnectivityONEReport -up-|> report.Report
+  report.ConnectivityReportConnector .up.|> core.ConnectionListener
+  report.ConnectivityReportConnector -up-|> report.Report
+  report.ContactTimesReport .up.|> core.ConnectionListener
+  report.ContactTimesReport -up-|> report.Report
+  report.ContactTimesReport +-down- report.ContactTimesReport.ConnectionInfo
+  report.ContactTimesReport.ConnectionInfo o-- core.DTNHost : h1
+  report.ContactTimesReport.ConnectionInfo o-- core.DTNHost : h2
+  report.ContactsDuringAnICTReport .up.|> core.ConnectionListener
+  report.ContactsDuringAnICTReport .up.|> core.UpdateListener
+  report.ContactsDuringAnICTReport -up-|> report.Report
+  report.ContactsPerHourReport .up.|> core.ConnectionListener
+  report.ContactsPerHourReport -up-|> report.Report
+  report.CreatedMessagesReport .up.|> core.MessageListener
+  report.CreatedMessagesReport -up-|> report.Report
+  report.DTN2Reporter .up.|> core.MessageListener
+  report.DTN2Reporter -up-|> report.Report
+  report.DeliveredMessagesReport .up.|> core.MessageListener
+  report.DeliveredMessagesReport -up-|> report.Report
+  report.DistanceDelayReport .up.|> core.MessageListener
+  report.DistanceDelayReport -up-|> report.Report
+  report.DistanceDelayReport +-down- report.DistanceDelayReport.InfoTuple
+  report.DistanceDelayReport.InfoTuple o-- core.Coord : loc1
+  report.DistanceDelayReport.InfoTuple o-- core.Coord : loc2
+  report.EncountersVSUniqueEncountersReport .up.|> core.ConnectionListener
+  report.EncountersVSUniqueEncountersReport .up.|> core.UpdateListener
+  report.EncountersVSUniqueEncountersReport -up-|> report.Report
+  report.EncountersVSUniqueEncountersReport o-- report.TotalEncountersReport : totalEncountersReport
+  report.EncountersVSUniqueEncountersReport o-- report.UniqueEncountersReport : uniqueEncountersReport
+  report.EnergyLevelReport .up.|> core.UpdateListener
+  report.EnergyLevelReport -up-|> report.SnapshotReport
+  report.EventLogReport .up.|> core.ConnectionListener
+  report.EventLogReport .up.|> core.MessageListener
+  report.EventLogReport -up-|> report.Report
+  report.InterContactTimesReport -up-|> report.ContactTimesReport
+  report.JumpSizeDistributionReport -up-|> report.SamplingReport
+  report.LocationSnapshotReport -up-|> report.SnapshotReport
+  report.MessageAvailabilityReport -up-|> report.MessageLocationReport
+  report.MessageCopyCountReport -up-|> report.MessageLocationReport
+  report.MessageDelayReport .up.|> core.MessageListener
+  report.MessageDelayReport -up-|> report.Report
+  report.MessageDeliveryReport .up.|> core.MessageListener
+  report.MessageDeliveryReport -up-|> report.Report
+  report.MessageGraphvizReport .up.|> core.MessageListener
+  report.MessageGraphvizReport -up-|> report.Report
+  report.MessageLocationReport .up.|> core.UpdateListener
+  report.MessageLocationReport -up-|> report.Report
+  report.MessageReport .up.|> core.MessageListener
+  report.MessageReport -up-|> report.Report
+  report.MessageStatsReport .up.|> core.MessageListener
+  report.MessageStatsReport -up-|> report.Report
+  report.MovementListenerTestReport .up.|> core.MovementListener
+  report.MovementListenerTestReport -up-|> report.Report
+  report.MovementNs2Report .up.|> core.MovementListener
+  report.MovementNs2Report -up-|> report.Report
+  report.NodeDensityReport -up-|> report.SamplingReport
+  report.PingAppReporter .up.|> core.ApplicationListener
+  report.PingAppReporter -up-|> report.Report
+  report.RadiusOfGyrationReport -up-|> report.SamplingReport
+  report.SamplingReport .up.|> core.UpdateListener
+  report.SamplingReport -up-|> report.Report
+  report.SnapshotReport .up.|> core.UpdateListener
+  report.SnapshotReport -up-|> report.Report
+  report.TotalContactTimeReport .up.|> core.UpdateListener
+  report.TotalContactTimeReport -up-|> report.ContactTimesReport
+  report.TotalEncountersReport .up.|> core.ConnectionListener
+  report.TotalEncountersReport .up.|> core.UpdateListener
+  report.TotalEncountersReport -up-|> report.Report
+  report.UniqueEncountersReport .up.|> core.ConnectionListener
+  report.UniqueEncountersReport .up.|> core.UpdateListener
+  report.UniqueEncountersReport -up-|> report.Report
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

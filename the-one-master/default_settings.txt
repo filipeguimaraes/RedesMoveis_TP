@@ -45,24 +45,6 @@ MapBasedMovement.nrofMapFiles = 1
 MapBasedMovement.mapFile1 = data/Braga.wkt
 
 
-## Reports - all report names have to be valid report classes
-# how many reports to load
-Report.nrofReports = 4
-# length of the warm up period (simulated seconds)
-Report.warmup = 0
-# default directory of reports (can be overridden per Report with output setting)
-Report.reportDir = reports/
-# Report for generating different kind of total statistics about message relaying performance.
-Report.report1 = MessageStatsReport
-# Reports the node contact time (i.e., how long they were in the range of each other) distribution.
-Report.report2 = ContactTimesReport
-# Report information about all delivered messages.
-Report.report3 = DeliveredMessagesReport
-# Reports delivered messages' delays (one line per delivered message) and cumulative delivery probability sorted by message delays.
-Report.report4 = MessageDelayReport
-# Message location report.
-#Report.report5 = MessageLocationReport
-
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 6

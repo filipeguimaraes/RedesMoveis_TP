@@ -1,0 +1,668 @@
+@startuml
+
+title __CORE's Class Diagram__\n
+
+  namespace core {
+    abstract class core.Application {
+        + appID : String
+        - aListeners : List<ApplicationListener>
+        + Application()
+        + Application()
+        + getAppID()
+        + getAppListeners()
+        {abstract} + handle()
+        {abstract} + replicate()
+        + sendEventToListeners()
+        + setAppID()
+        + setAppListeners()
+        {abstract} + update()
+    }
+  }
+  
+
+  namespace core {
+    interface core.ApplicationListener {
+        {abstract} + gotEvent()
+    }
+  }
+  
+
+  namespace core {
+    class core.ArithmeticCondition {
+        {static} - VALID_OPERATORS : String
+        - number : double
+        - operator : char
+        + ArithmeticCondition()
+        + isTrueFor()
+        + toString()
+    }
+  }
+  
+
+  namespace core {
+    class core.CBRConnection {
+        - speed : int
+        - transferDoneTime : double
+        + CBRConnection()
+        + abortTransfer()
+        + getRemainingByteCount()
+        + getSpeed()
+        + getTransferDoneTime()
+        + isMessageTransferred()
+        + startTransfer()
+        + toString()
+    }
+  }
+  
+
+  namespace core {
+    abstract class core.Connection {
+        # bytesTransferred : int
+        - isUp : boolean
+        + Connection()
+        + abortTransfer()
+        + finalizeTransfer()
+        + getMessage()
+        + getOtherInterface()
+        + getOtherNode()
+        {abstract} + getRemainingByteCount()
+        {abstract} + getSpeed()
+        + getTotalBytesTransferred()
+        + isInitiator()
+        {abstract} + isMessageTransferred()
+        + isReadyForTransfer()
+        + isTransferring()
+        + isUp()
+        + setUpState()
+        {abstract} + startTransfer()
+        + toString()
+        + update()
+        # clearMsgOnFly()
+    }
+  }
+  
+
+  namespace core {
+    interface core.ConnectionListener {
+        {abstract} + hostsConnected()
+        {abstract} + hostsDisconnected()
+    }
+  }
+  
+
+  namespace core {
+    class core.Constants {
+        {static} + DEBUG : boolean
+        - Constants()
+    }
+  }
+  
+
+  namespace core {
+    class core.Coord {
+        - x : double
+        - y : double
+        + Coord()
+        + clone()
+        + compareTo()
+        + distance()
+        + equals()
+        + equals()
+        + getX()
+        + getY()
+        + hashCode()
+        + setLocation()
+        + setLocation()
+        + toString()
+        + translate()
+    }
+  }
+  
+
+  namespace core {
+    class core.DTN2Manager {
+        {static} - CLAs : Map<DTNHost, CLAParser>
+        {static} - EID_to_host : Collection<EIDHost>
+        {static} - bundles : Map<String, Bundle>
+        {static} - events : DTN2Events
+        {static} - reporter : DTN2Reporter
+        {static} + addBundle()
+        {static} + getBundle()
+        {static} + getEvents()
+        {static} + getHosts()
+        {static} + getParser()
+        {static} + getReporter()
+        {static} + setEvents()
+        {static} + setReporter()
+        {static} + setup()
+    }
+  }
+  
+
+  namespace core {
+    class core.DTN2Manager.EIDHost {
+        + EID : String
+        + host_id : int
+        + EIDHost()
+    }
+  }
+  
+
+  namespace core {
+    class core.DTNHost {
+        - address : int
+        - movListeners : List<MovementListener>
+        - msgListeners : List<MessageListener>
+        - name : String
+        - net : List<NetworkInterface>
+        {static} - nextAddress : int
+        - nextTimeToMove : double
+        - speed : double
+        + DTNHost()
+        + compareTo()
+        + connect()
+        + connectionDown()
+        + connectionUp()
+        + createNewMessage()
+        + deleteMessage()
+        + equals()
+        + forceConnection()
+        + getAddress()
+        + getBufferOccupancy()
+        + getComBus()
+        + getConnections()
+        + getInterface()
+        + getInterfaces()
+        + getLocation()
+        + getMessageCollection()
+        + getNrofMessages()
+        + getPath()
+        + getRouter()
+        + getRoutingInfo()
+        + isMovementActive()
+        + isRadioActive()
+        + messageAborted()
+        + messageTransferred()
+        + move()
+        + receiveMessage()
+        + requestDeliverableMessages()
+        {static} + reset()
+        + sendMessage()
+        + setLocation()
+        + setName()
+        + toString()
+        + update()
+        # getInterface()
+        {static} - getNextAddress()
+        - setNextWaypoint()
+        - setRouter()
+        - tearDownAllConnections()
+    }
+  }
+  
+
+  namespace core {
+    class core.DTNSim {
+        {static} + BATCH_MODE_FLAG : String
+        {static} + RANGE_DELIMETER : String
+        {static} + RESET_METHOD_NAME : String
+        {static} - resetList : List<Class<?>>
+        {static} + main()
+        {static} + registerForReset()
+        {static} - initSettings()
+        {static} - parseNrofRuns()
+        {static} - print()
+        {static} - resetForNextRun()
+    }
+  }
+  
+
+  namespace core {
+    class core.Debug {
+        {static} - debugLevel : int
+        {static} - out : PrintStream
+        {static} - timingCause : String
+        {static} - timingStart : long
+        {static} + doneTiming()
+        {static} + p()
+        {static} + p()
+        {static} + p()
+        {static} + pt()
+        {static} + pt()
+        + setDebugLevel()
+        + setPrintStream()
+        {static} + startTiming()
+    }
+  }
+  
+
+  namespace core {
+    class core.Message {
+        {static} + INFINITE_TTL : int
+        - appID : String
+        - id : String
+        - initTtl : int
+        {static} - nextUniqueId : int
+        - path : List<DTNHost>
+        - properties : Map<String, Object>
+        - responseSize : int
+        - size : int
+        - timeCreated : double
+        - timeReceived : double
+        - uniqueId : int
+        + Message()
+        + addNodeOnPath()
+        + addProperty()
+        + compareTo()
+        + getAppID()
+        + getCreationTime()
+        + getFrom()
+        + getHopCount()
+        + getHops()
+        + getId()
+        + getProperty()
+        + getReceiveTime()
+        + getRequest()
+        + getResponseSize()
+        + getSize()
+        + getTo()
+        + getTtl()
+        + getUniqueId()
+        + isResponse()
+        + replicate()
+        {static} + reset()
+        + setAppID()
+        + setReceiveTime()
+        + setRequest()
+        + setResponseSize()
+        + setTtl()
+        + toString()
+        + updateProperty()
+        # copyFrom()
+    }
+  }
+  
+
+  namespace core {
+    interface core.MessageListener {
+        {abstract} + messageDeleted()
+        {abstract} + messageTransferAborted()
+        {abstract} + messageTransferStarted()
+        {abstract} + messageTransferred()
+        {abstract} + newMessage()
+    }
+  }
+  
+
+  namespace core {
+    class core.ModuleCommunicationBus {
+        {static} - INIT_CAPACITY : int
+        - listeners : HashMap<String, List<ModuleCommunicationListener>>
+        - values : HashMap<String, Object>
+        + ModuleCommunicationBus()
+        + addProperty()
+        + containsProperty()
+        + getDouble()
+        + getInt()
+        + getProperty()
+        + subscribe()
+        + toString()
+        + unsubscribe()
+        + updateDouble()
+        + updateProperty()
+        - notifyListeners()
+    }
+  }
+  
+
+  namespace core {
+    interface core.ModuleCommunicationListener {
+        {abstract} + moduleValueChanged()
+    }
+  }
+  
+
+  namespace core {
+    interface core.MovementListener {
+        {abstract} + initialLocation()
+        {abstract} + newDestination()
+    }
+  }
+  
+
+  namespace core {
+    abstract class core.NetworkInterface {
+        {static} + ACT_JITTER_S : String
+        {static} + NET_SUB_NS : String
+        {static} + RANGE_ID : String
+        {static} + SCAN_INTERVAL_ID : String
+        {static} + SCAN_INTERVAL_S : String
+        {static} + SPEED_ID : String
+        {static} + TRANSMIT_RANGE_S : String
+        {static} + TRANSMIT_SPEED_S : String
+        # connections : List<Connection>
+        # interfacetype : String
+        # oldTransmitRange : double
+        # transmitRange : double
+        # transmitSpeed : int
+        {static} - CON_DOWN : int
+        {static} - CON_UP : int
+        - activenessJitterMax : int
+        - activenessJitterValue : int
+        - address : int
+        - cListeners : List<ConnectionListener>
+        - lastScanTime : double
+        {static} - rng : Random
+        - scanInterval : double
+        + NetworkInterface()
+        + NetworkInterface()
+        + NetworkInterface()
+        {abstract} + connect()
+        {abstract} + createConnection()
+        + destroyConnection()
+        + getConnections()
+        + getHost()
+        + getInterfaceType()
+        + getLocation()
+        + getTransmitRange()
+        + getTransmitSpeed()
+        + isActive()
+        + isScanning()
+        + isTransferring()
+        + moduleValueChanged()
+        {abstract} + replicate()
+        {static} + reset()
+        + setClisteners()
+        + setGroupSettings()
+        + setHost()
+        + toString()
+        {abstract} + update()
+        # connect()
+        # disconnect()
+        # ensurePositiveValue()
+        # isConnected()
+        # isWithinRange()
+        - notifyConnectionListeners()
+        - removeConnectionByIndex()
+    }
+  }
+  
+
+  namespace core {
+    class core.Settings {
+        {static} + DEF_SETTINGS_FILE : String
+        {static} + FILL_DELIMITER : String
+        {static} + SETTING_OUTPUT_S : String
+        {static} # props : Properties
+        - namespace : String
+        - oldNamespaces : Stack<String>
+        {static} - out : PrintStream
+        {static} - runIndex : int
+        - secondaryNamespace : String
+        - secondaryNamespaces : Stack<String>
+        {static} - writtenSettings : Set<String>
+        + Settings()
+        + Settings()
+        {static} + addSettings()
+        + assertValidRange()
+        + contains()
+        + createIntializedObject()
+        + createObject()
+        + ensurePositiveValue()
+        + getBoolean()
+        + getBoolean()
+        + getCondition()
+        + getCsvDoubles()
+        + getCsvDoubles()
+        + getCsvInts()
+        + getCsvInts()
+        + getCsvRanges()
+        + getCsvSetting()
+        + getCsvSetting()
+        + getDouble()
+        + getDouble()
+        + getFullPropertyName()
+        + getInt()
+        + getInt()
+        + getLong()
+        + getNameSpace()
+        + getSecondaryNameSpace()
+        + getSetting()
+        + getSetting()
+        {static} + init()
+        {static} + initFromStream()
+        + restoreNameSpace()
+        + restoreSecondaryNamespace()
+        + restoreSubNameSpace()
+        + setNameSpace()
+        {static} + setRunIndex()
+        + setSecondaryNamespace()
+        + setSubNameSpace()
+        + toString()
+        + valueFillString()
+        - convertToInt()
+        - convertToInts()
+        - getClass()
+        - getFullPropertyName()
+        - getMultiplier()
+        - getPropertyNamesString()
+        - loadObject()
+        {static} - outputSetting()
+        - parseDouble()
+        - parseDoubles()
+        - parseLong()
+        {static} - parseRunSetting()
+    }
+  }
+  
+
+  namespace core {
+    class core.SettingsError {
+        + SettingsError()
+        + SettingsError()
+        + SettingsError()
+    }
+  }
+  
+
+  namespace core {
+    class core.SimClock {
+        {static} - clock : SimClock
+        {static} - clockTime : double
+        + advance()
+        {static} + getFormattedTime()
+        {static} + getInstance()
+        {static} + getIntTime()
+        {static} + getTime()
+        {static} + reset()
+        + setTime()
+        + toString()
+        - SimClock()
+    }
+  }
+  
+
+  namespace core {
+    class core.SimError {
+        - e : Exception
+        + SimError()
+        + SimError()
+        + SimError()
+        + getException()
+    }
+  }
+  
+
+  namespace core {
+    class core.SimScenario {
+        {static} + APPCOUNT_S : String
+        {static} + APPTYPE_NS : String
+        {static} + APPTYPE_S : String
+        {static} + END_TIME_S : String
+        {static} + GAPPNAME_S : String
+        {static} + GROUP_ID_S : String
+        {static} + GROUP_NS : String
+        {static} + INTERFACENAME_S : String
+        {static} + INTNAME_S : String
+        {static} + INTTYPE_NS : String
+        {static} + INTTYPE_S : String
+        {static} + MOVEMENT_MODEL_S : String
+        {static} + NAME_S : String
+        {static} + NROF_GROUPS_S : String
+        {static} + NROF_HOSTS_S : String
+        {static} + NROF_INTERF_S : String
+        {static} + NROF_INTTYPES_S : String
+        {static} + ROUTER_S : String
+        {static} + SCENARIO_NS : String
+        {static} + SIM_CON_S : String
+        {static} + UP_INT_S : String
+        # hosts : List<DTNHost>
+        ~ nrofGroups : int
+        {static} - APP_PACKAGE : String
+        {static} - INTTYPE_PACKAGE : String
+        {static} - MM_PACKAGE : String
+        {static} - ROUTING_PACKAGE : String
+        - appListeners : List<ApplicationListener>
+        - connectionListeners : List<ConnectionListener>
+        - endTime : double
+        - maxHostRange : double
+        - messageListeners : List<MessageListener>
+        - movementListeners : List<MovementListener>
+        {static} - myinstance : SimScenario
+        - name : String
+        - simulateConnections : boolean
+        - updateInterval : double
+        - updateListeners : List<UpdateListener>
+        - worldSizeX : int
+        - worldSizeY : int
+        + addApplicationListener()
+        + addConnectionListener()
+        + addMessageListener()
+        + addMovementListener()
+        + addUpdateListener()
+        + getApplicationListeners()
+        + getEndTime()
+        + getExternalEvents()
+        + getHosts()
+        {static} + getInstance()
+        + getMap()
+        + getMaxHostRange()
+        + getName()
+        + getUpdateInterval()
+        + getUpdateListeners()
+        + getWorld()
+        + getWorldSizeX()
+        + getWorldSizeY()
+        {static} + reset()
+        + simulateConnections()
+        # SimScenario()
+        # createHosts()
+    }
+  }
+  
+
+  namespace core {
+    interface core.UpdateListener {
+        {abstract} + updated()
+    }
+  }
+  
+
+  namespace core {
+    class core.VBRConnection {
+        - currentspeed : int
+        - lastUpdate : double
+        - msgsent : int
+        - msgsize : int
+        + VBRConnection()
+        + getRemainingByteCount()
+        + getSpeed()
+        + isMessageTransferred()
+        + startTransfer()
+        + update()
+    }
+  }
+  
+
+  namespace core {
+    class core.World {
+        {static} + DEF_RANDOMIZE_UPDATES : boolean
+        {static} + OPTIMIZATION_SETTINGS_NS : String
+        {static} + RANDOMIZE_UPDATES_S : String
+        {static} + REALTIME_SIM_S : String
+        {static} + SIMULATE_CON_ONCE_S : String
+        - eventQueues : List<EventQueue>
+        - hosts : List<DTNHost>
+        - isCancelled : boolean
+        - nextQueueEventTime : double
+        - realtimeSimulation : boolean
+        - simStartRealtime : long
+        - simulateConOnce : boolean
+        - simulateConnections : boolean
+        - sizeX : int
+        - sizeY : int
+        - updateInterval : double
+        - updateListeners : List<UpdateListener>
+        - updateOrder : ArrayList<DTNHost>
+        + World()
+        + cancelSim()
+        + getHosts()
+        + getNodeByAddress()
+        + getSizeX()
+        + getSizeY()
+        + scheduleUpdate()
+        + setNextEventQueue()
+        + update()
+        + warmupMovementModel()
+        - initSettings()
+        - moveHosts()
+        - updateHosts()
+    }
+  }
+  
+
+  core.CBRConnection -up-|> core.Connection
+  core.Connection o-- core.NetworkInterface : fromInterface
+  core.Connection o-- core.DTNHost : fromNode
+  core.Connection o-- core.DTNHost : msgFromNode
+  core.Connection o-- core.Message : msgOnFly
+  core.Connection o-- core.NetworkInterface : toInterface
+  core.Connection o-- core.DTNHost : toNode
+  core.Coord .up.|> java.lang.Cloneable
+  core.Coord .up.|> java.lang.Comparable
+  core.DTN2Manager +-down- core.DTN2Manager.EIDHost
+  core.DTN2Manager.EIDHost o-- core.DTNHost : host
+  core.DTNHost .up.|> java.lang.Comparable
+  core.DTNHost o-- core.ModuleCommunicationBus : comBus
+  core.DTNHost o-- core.Coord : destination
+  core.DTNHost o-- core.Coord : location
+  core.DTNHost o-- movement.MovementModel : movement
+  core.DTNHost o-- movement.Path : path
+  core.DTNHost o-- routing.MessageRouter : router
+  core.Message .up.|> java.lang.Comparable
+  core.Message o-- core.DTNHost : from
+  core.Message o-- core.Message : requestMsg
+  core.Message o-- core.DTNHost : to
+  core.NetworkInterface .up.|> core.ModuleCommunicationListener
+  core.NetworkInterface o-- core.DTNHost : host
+  core.NetworkInterface o-- interfaces.ConnectivityOptimizer : optimizer
+  core.NetworkInterface o-- util.ActivenessHandler : ah
+  core.SettingsError -up-|> core.SimError
+  core.SimScenario .up.|> java.io.Serializable
+  core.SimScenario o-- input.EventQueueHandler : eqHandler
+  core.SimScenario o-- movement.map.SimMap : simMap
+  core.SimScenario o-- core.World : world
+  core.VBRConnection -up-|> core.Connection
+  core.World o-- input.EventQueue : nextEventQueue
+  core.World o-- input.ScheduledUpdatesQueue : scheduledUpdates
+  core.World o-- core.SimClock : simClock
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
