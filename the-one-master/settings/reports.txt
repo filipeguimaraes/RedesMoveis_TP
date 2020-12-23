@@ -4,7 +4,6 @@ Report.nrofReports = 4
 # length of the warm up period (simulated seconds)
 Report.warmup = 0
 # default directory of reports (can be overridden per Report with output setting)
-Report.reportDir = reports/
 # Report for generating different kind of total statistics about message relaying performance.
 Report.report1 = MessageStatsReport
 # Reports the node contact time (i.e., how long they were in the range of each other) distribution.

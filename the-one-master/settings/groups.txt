@@ -23,7 +23,6 @@
 #####################################
 Group.movementModel = ShortestPathMapBasedMovement
 #Group.router = EpidemicRouter
-Group.router = EpidemicOracleRouter
 #Group.router = ProphetRouter
 #Group.router = SprayAndWaitRouter
 Group.bufferSize = 100M
@@ -56,7 +55,6 @@ Group2.groupID = P
 ####################
 # group 3 specific settings
 Group3.movementModel = CarMovement
-Group3.nrofHosts = 130
 Group3.groupID = C
 # cars can drive only on roads
 Group3.okMaps = 1

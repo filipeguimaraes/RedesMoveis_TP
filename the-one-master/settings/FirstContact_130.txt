@@ -1,0 +1,5 @@
+Group.router = FirstContactRouter
+
+Group3.nrofHosts = 130
+
+Report.reportDir = reports/FirstContact_130

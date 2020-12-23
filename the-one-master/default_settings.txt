@@ -47,7 +47,8 @@ MapBasedMovement.mapFile1 = data/Braga.wkt
 
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
-SprayAndWaitRouter.nrofCopies = 6
+ProphetV2Router.secondsInTimeUnit = 30
+SprayAndWaitRouter.nrofCopies = 100
 SprayAndWaitRouter.binaryMode = true
 
 ## Optimization settings -- these affect the speed of the simulation

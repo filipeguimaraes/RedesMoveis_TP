@@ -1,0 +1,20 @@
+Message stats for scenario redes_moveis
+sim_time: 4200.1000
+created: 1000
+started: 43244
+relayed: 43243
+aborted: 0
+dropped: 0
+removed: 10354
+delivered: 512
+delivery_prob: 0.5120
+response_prob: 0.0000
+overhead_ratio: 83.4590
+latency_avg: 2166.9578
+latency_med: 2238.4000
+hopcount_avg: 3.8066
+hopcount_med: 4
+buffertime_avg: 1247.5425
+buffertime_med: 1085.1000
+rtt_avg: NaN
+rtt_med: NaN

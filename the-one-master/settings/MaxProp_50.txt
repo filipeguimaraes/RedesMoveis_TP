@@ -1,0 +1,5 @@
+Group.router = MaxPropRouter
+
+Group3.nrofHosts = 50
+
+Report.reportDir = reports/MaxProp_50
