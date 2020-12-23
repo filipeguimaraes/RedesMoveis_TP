@@ -50,6 +50,7 @@ ProphetRouter.secondsInTimeUnit = 30
 ProphetV2Router.secondsInTimeUnit = 30
 SprayAndWaitRouter.nrofCopies = 100
 SprayAndWaitRouter.binaryMode = true
+MaxPropRouterWithEstimation.timeScale = 60
 
 ## Optimization settings -- these affect the speed of the simulation
 ## see World class for details.
