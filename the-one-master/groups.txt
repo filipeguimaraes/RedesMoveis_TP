@@ -23,7 +23,9 @@
 #####################################
 Group.movementModel = ShortestPathMapBasedMovement
 Group.router = EpidemicRouter
-Group.bufferSize = 5M
+#Group.router = ProphetRouter
+#Group.router = SprayAndWaitRouter
+Group.bufferSize = 500M
 Group.waitTime = 0, 120
 # All nodes have the bluetooth interface
 Group.nrofInterfaces = 1
@@ -32,7 +34,7 @@ Group.interface1 = btInterface
 #Group.speed = 0.5, 1.5
 Group.speed = 0.0, 0.0
 # Message TTL of 300 minutes (5 hours)
-Group.msgTtl = 300
+Group.msgTtl = 60
 
 
 
@@ -47,15 +49,14 @@ Group1.groupID = S
 #####################
 Group2.nrofHosts = 5
 Group2.groupID = P
-Group2.interface2 = highspeedInterface
 
 ####################
 # Grupo 2 - Carros #
 ####################
 # group2 specific settings
-Group3.nrofHosts = 200
+Group3.nrofHosts = 150
 Group3.groupID = C
 # cars can drive only on roads
 Group3.okMaps = 1
 # 10-50 km/h
-Group3.speed = 2.7, 13.9
+Group3.speed = 2.7, 20

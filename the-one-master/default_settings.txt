@@ -8,7 +8,7 @@ Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 # 43200s == 12h
 # 3600s == 1h
-Scenario.endTime = 43200
+Scenario.endTime = 4200
 # 3 tipos de grupos: sensores, carros e portais
 Scenario.nrofHostGroups = 3
 
@@ -47,14 +47,21 @@ MapBasedMovement.mapFile1 = data/Braga.wkt
 
 ## Reports - all report names have to be valid report classes
 # how many reports to load
-Report.nrofReports = 2
+Report.nrofReports = 4
 # length of the warm up period (simulated seconds)
 Report.warmup = 0
 # default directory of reports (can be overridden per Report with output setting)
 Report.reportDir = reports/
-# Report classes to load
+# Report for generating different kind of total statistics about message relaying performance.
 Report.report1 = MessageStatsReport
+# Reports the node contact time (i.e., how long they were in the range of each other) distribution.
 Report.report2 = ContactTimesReport
+# Report information about all delivered messages.
+Report.report3 = DeliveredMessagesReport
+# Reports delivered messages' delays (one line per delivered message) and cumulative delivery probability sorted by message delays.
+Report.report4 = MessageDelayReport
+# Message location report.
+#Report.report5 = MessageLocationReport
 
 ## Default settings for some routers settings
 ProphetRouter.secondsInTimeUnit = 30
@@ -67,18 +74,8 @@ Optimization.cellSizeMult = 5
 Optimization.randomizeUpdateOrder = true
 
 
-## GUI settings
-
-# GUI underlay image settings
-GUI.UnderlayImage.fileName = data/helsinki_underlay.png
-# Image offset in pixels (x, y)
-GUI.UnderlayImage.offset = 64, 20
-# Scaling factor for the image
-GUI.UnderlayImage.scale = 4.75
-# Image rotation (radians)
-GUI.UnderlayImage.rotate = -0.015
 
 # how many events to show in the log panel (default = 30)
-GUI.EventLogPanel.nrofEvents = 105
+GUI.EventLogPanel.nrofEvents = 30
 # Regular Expression log filter (see Pattern-class from the Java API for RE-matching details)
 #GUI.EventLogPanel.REfilter = .*p[1-9]<->p[1-9]$
